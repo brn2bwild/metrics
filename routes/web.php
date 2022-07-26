@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Evento;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,5 +27,17 @@ Route::middleware([
     return view('dashboard');
   })->name('dashboard');
 
-  
+  Route::get('/eventos', function () {
+    return view('eventos.index');
+  })->name('eventos.index');
+
+  Route::get('/eventos/{url}', function ($url) {
+    $evento = Evento::where('url_evento', $url)->first();
+    return view('eventos.editar', compact('evento'));
+  })->name('eventos.editar');
+
+  Route::get('/eventos/{url}/atletas', function ($url) {
+    $evento = Evento::where('url_evento', $url)->first();
+    return view('eventos.atletas', compact('evento'));
+  })->name('evento-atletas.index');
 });

@@ -248,19 +248,21 @@ return [
           // 'can'  => 'manage-blog',
         ],
         [
-          'text' => 'Eventos',
-          'url' => '#',
+          'header' => 'ADMINISTRACIÓN'
         ],
         [
-          'header' => 'ADMINISTRACIÓN'
+          'text' => 'Eventos',
+          'route' => 'eventos.index',
+          'can' => 'crear eventos',
         ],
         [
           'text' => 'Usuarios',
           'url' => '#',
         ],
         [
-          'text' => 'Eventos',
+          'text' => 'Roles',
           'url' => '#',
+          'can' => 'crear roles',
         ],
         // [
         //     'text'        => 'eventos',
@@ -417,12 +419,12 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+                    'asset' => true,
+                    'location' => 'js/sweetalert2@11.js',
                 ],
             ],
         ],
