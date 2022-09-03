@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Wod extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+      'nombre',
+      'descripcion',
+      'tipo',
+      'time_cap',
+      'id_categoria',
+    ];
 }

@@ -2,20 +2,16 @@
 
 @section('title', 'Eventos')
 
-{{-- @section('content_header')
-    
-@stop --}}
-
 @section('css')
   @livewireStyles
 @endsection
 
 @section('content')
   <livewire:eventos-organizador/>
-  @livewireScripts
 @stop
 
 @section('js')
+  @livewireScripts
   <script>
     window.addEventListener('eventoGuardado', event => {
       $('#modalEvento').modal('hide');
@@ -51,5 +47,10 @@
         }
       })
     }
+  </script>
+  <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
   </script>
 @endsection

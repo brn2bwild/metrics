@@ -2,7 +2,13 @@
   <div class="card">
     <div class="card-body">
       <div class="row">
-        <section class="col-12 col-md-8 mb-4">
+        <section class="col-12 d-flex justify-content-end">
+          {{-- <label for="">Atletas inscritos al evento</label> --}}
+          {{-- <div class="row px-2"> --}}
+            <button href="" type="button" class="btn btn-primary text-bold rounded-pill" data-toggle="modal" data-target="#modalAtletas">Lista de atletas inscritos <span class="badge badge-light ml-2">4</span></button>
+          {{-- </div> --}}
+        </section>
+        <section class="col-12">
           <div class="form-group">
             <label for="nombre">Nombre del evento</label>
             <input wire:model="nombre" type="text" class="form-control" id="nombre" aria-describedby="nombre" placeholder="¿Cuál es el nombre del evento?">
@@ -12,7 +18,7 @@
           </div>
           <div class="row">
             <div class="col-12 col-sm-6 form-group">
-              <label for="fecha">Fecha del evento</label>
+              <label for="fecha">Fecha</label>
               <input wire:model="fecha" type="date" class="form-control" id="fecha" aria-describedby="fecha" placeholder="¿Cuál es la fecha del evento?">
               @error('fecha')
                 <small id="fecha" class="form-text text-muted">{{$message}}</small>
@@ -27,21 +33,21 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-12 col-sm-4 form-group">
+            <div class="col-12 col-sm-3 form-group">
               <label for="ciudad">Ciudad del evento</label>
               <input wire:model="ciudad" type="text" class="form-control" id="ciudad" aria-describedby="ciudad" placeholder="¿En qué ciudad será el evento?">
               @error('ciudad')
                 <small id="ciudad" class="form-text text-muted">{{$message}}</small>
               @enderror
             </div>
-            <div class="col-12 col-sm-4 form-group">
+            <div class="col-12 col-sm-3 form-group">
               <label for="estado">Estado</label>
               <input wire:model="estado" type="text" class="form-control" id="estado" aria-describedby="estado" placeholder="¿En qué estado se llevará a cabo?">
               @error('estado')
                 <small id="estado" class="form-text text-muted">{{$message}}</small>
               @enderror
             </div>
-            <div class="col-12 col-sm-4 form-group">
+            <div class="col-12 col-sm-6 form-group">
               <label for="direccion">Dirección</label>
               <input wire:model="direccion" type="text" class="form-control" id="direccion" aria-describedby="direccion" placeholder="¿Cuál es la dirección del evento?">
               @error('direccion')
@@ -72,21 +78,23 @@
               @enderror
             </div>
           </div>
-          <div class="form-group">
-            <label for="url_pagina">Página oficial</label>
-            <input wire:model="url_pagina" type="text" class="form-control" id="url_pagina" aria-describedby="url_pagina" placeholder="Agrega la página oficial de tu evento">
-            @error('url_pagina')
-              <small id="url_pagina" class="form-text text-muted">{{$message}}</small>
-            @enderror
+          <div class="row">
+            <div class="col-12 col-sm-9">
+              <div class="form-group mb-0">
+                <label for="url_pagina">Página oficial</label>
+                <input wire:model="url_pagina" type="text" class="form-control" id="url_pagina" aria-describedby="url_pagina" placeholder="Agrega la página oficial de tu evento">
+                @error('url_pagina')
+                  <small id="url_pagina" class="form-text text-muted">{{$message}}</small>
+                @enderror
+              </div>
+            </div>
+            <div class="col-12 col-sm-3 d-flex justify-content-end align-items-end mt-sm-0 mt-4">
+              <button wire:click.prevent="guardar()" class="btn btn-primary text-bold rounded-pill">Guardar información</button>
+            </div>
           </div>
-          <div class="row d-flex justify-content-between px-2">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAtletas">
-              Atletas inscritos
-            </button>
-            <button wire:click.prevent="guardar()" class="btn btn-primary">Guardar</button>
-          </div>
+          
         </section>
-        <section class="col-12 col-md-4">
+        {{-- <section class="col-12 col-md-4 mt-4 mt-sm-0">
           @if($evento->url_imagen == null)
             <label>Agrega una imágen para tu evento</label>
             <div class="input-group">
@@ -110,9 +118,14 @@
             <div class="row pl-2">
               <button wire:click.prevent="confimarEliminarImg({{$evento->id}})" class="btn btn-danger float-right">Eliminar</button>
             </div>
-          @endif          
-        </section>
-        <section class="col-12">
+          @endif 
+        </section> --}}
+        
+        <section class="col-12 mt-4 rounded-sm" style="background-color:lightgray">
+          {{-- <div class="row d-flex justify-content-between align-items-center px-3 py-2">
+            <label for="url_pagina">Categorías del evento</label>
+            <button class="btn btn-primary text-bold rounded-pill ml-2" data-toggle="modal" data-target="#categoriasModal">Agregar</button>
+          </div> --}}
           <livewire:categorias-organizador :evento="$evento"/>
         </section>
       </div>

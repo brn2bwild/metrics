@@ -5,24 +5,43 @@
     </div>
     <div class="card-body">
       <div class="w-full d-flex justify-content-between mb-4">
-        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalEvento">Nuevo</button>
+        <button class="btn btn-primary rounded-pill text-bold" type="button" data-toggle="modal" data-target="#modalEvento">Agregar</button>
         <div>
           <input class="form-control" type="text" placeholder="Buscar">
         </div>
       </div>
       <div class="w-full row d-flex justify-content-start">
         @foreach ($eventos as $evento)
-          <div class="d-flex justify-content-center col-12 col-sm-6 col-md-3">
+          <div class="d-flex justify-content-center col-12 col-sm-6 col-md-4 col-xl-3">
             <div class="card" style="width: 18rem;">
-              <img class="card-img-top" src="{{($evento->url_imagen) ? 'storage/'.$evento->url_imagen : asset('storage/images/jumbotron-image.jpg')}}" alt="Card image cap" height="200px">
+              <img class="card-img-top" src="{{($evento->url_imagen) ? 'storage/'.$evento->url_imagen : asset('storage/images/jumbotron-image.jpg')}}" alt="..." height="200px" style="border-radius: 5px 5px 0 0">
+              <div>
+                <label for="imagenEvento" class="badge badge-primary text-bold text-md rounded-pill p-2" style="position:absolute; top: 178px;
+                left: 5px;" data-toggle="tooltip" title="Buscar imágen">
+                  <span class="fas fa-camera" aria-hidden="true" style="cursor: pointer"></span>
+                  <input type="file" id="imagenEvento" style="display:none">
+                </label>
+                <label for="cargarImagen" class="badge badge-success text-bold text-md rounded-pill p-2" style="position:absolute; top: 178px;
+                left: 44px;" data-toggle="tooltip" title="Subir imágen">
+                  <span class="fas fa-check" aria-hidden="true" style="cursor: pointer"></span>
+                  {{-- <button id="cargarImagen" style="display:none"></button> --}}
+                </label>
+                <label for="eliminarImagen" class="badge badge-danger text-bold text-md rounded-pill p-2" style="position:absolute; top: 178px;
+                right: 5px;"  data-toggle="tooltip" title="Eliminar imágen">
+                  <span class="fas fa-trash-alt" aria-hidden="true" style="cursor: pointer"></span>
+                  {{-- <button id="eliminarImagen" style="display:none"></button> --}}
+                </label>
+              </div>
               <div class="card-body">
                 <h5 class="card-title">{{$evento->nombre}}</h5>
-                <p class="card-text">{{$evento->fecha_hora}}</p>
-                <p class="card-text">{{$evento->ciudad}}</p>
-                <p class="card-text">{{$evento->estado}}</p>
+                <p class="card-text mb-0">{{$evento->fecha_hora}}</p>
+                <p class="card-text mb-0">{{$evento->ciudad}}</p>
+                <p class="card-text mb-0">{{$evento->estado}}</p>
+              </div>
+              <div class="card-footer text-muted">
                 <div class="d-flex justify-content-between">
-                  <a href="{{route('eventos.editar', $evento->url_evento)}}" class="btn btn-primary">Editar</a>
-                  <a onclick="confirmarEliminar('{{$evento->url_evento}}')" class="btn btn-danger">Eliminar</a>
+                  <a href="{{route('eventos.editar', $evento->url_evento)}}" class="card-link text-bold rounded-pill">Editar</a>
+                  <a href="" onclick="confirmarEliminar('{{$evento->url_evento}}')" class="card-link text-bold text-danger">Eliminar</a>
                 </div>
               </div>
             </div>

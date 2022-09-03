@@ -248,7 +248,8 @@ return [
           // 'can'  => 'manage-blog',
         ],
         [
-          'header' => 'ADMINISTRACIÓN'
+          'header' => 'ADMINISTRACIÓN',
+          'can' => ['crear eventos','eliminar usuarios']
         ],
         [
           'text' => 'Eventos',
@@ -258,6 +259,7 @@ return [
         [
           'text' => 'Usuarios',
           'url' => '#',
+          'can' => 'eliminar usuarios',
         ],
         [
           'text' => 'Roles',

@@ -103,5 +103,23 @@
         }
       })
     })
+
+    window.addEventListener('swal:wodGuardado', event => {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Wod guardado con éxito',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      window.setTimeout(() => {
+        location.reload()
+      }, 1500);
+    })
+  </script>
+  <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
   </script>
 @endsection
