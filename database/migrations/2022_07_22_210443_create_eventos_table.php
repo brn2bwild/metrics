@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('ciudad');
             $table->string('estado');
             $table->string('direccion')->nullable();
-            $table->string('descripcion')->nullable();
+            $table->string('comentarios')->nullable();
             $table->json('redes_sociales')->nullable();
             $table->string('url_pagina')->nullable();
             $table->string('url_imagen')->nullable();

@@ -14,7 +14,7 @@ class EditarEventosOrganizador extends Component
   use WithFileUploads;
   
   public $evento;
-  public $nombre, $fecha, $hora, $ciudad, $estado, $direccion, $descripcion, $facebook, $instagram, $url_pagina, $imagen;
+  public $nombre, $fecha, $hora, $ciudad, $estado, $direccion, $comentarios, $facebook, $instagram, $url_pagina, $imagen;
   
   protected $listeners = ['eliminarImg'];
 
@@ -27,7 +27,7 @@ class EditarEventosOrganizador extends Component
       'ciudad' => 'required|max:100',
       'estado' => 'required|max:100',
       'direccion' => 'max:100',
-      'descripcion' => 'max:200',
+      'comentarios' => 'max:200',
       'facebook' => 'max:100',
       'instagram' => 'max:100',
       'url_pagina' => 'max:100',
@@ -40,7 +40,7 @@ class EditarEventosOrganizador extends Component
     $this->ciudad = $this->evento->ciudad;
     $this->estado = $this->evento->estado;
     $this->direccion = $this->evento->direccion;
-    $this->descripcion = $this->evento->descripcion;
+    $this->comentarios = $this->evento->comentarios;
     $array_redes = json_decode($this->evento->redes_sociales);
     $this->facebook = ($array_redes->facebook) ?? '';
     $this->instagram = ($array_redes->instagram) ?? '';
@@ -64,9 +64,9 @@ class EditarEventosOrganizador extends Component
       'url_imagen' => $path,
     ]);
 
-    $this->dispatchBrowserEvent('swal:imgGuardada', [
+    $this->dispatchBrowserEvent('swal:modal', [
       'type' => 'success',
-      'title' => 'Imágen guardada exitosamente.',
+      'title' => '¡Imágen guardada!',
       'text' => '',
       'icon' => 'success',
     ]);
@@ -106,11 +106,16 @@ class EditarEventosOrganizador extends Component
       'ciudad' => $this->ciudad,
       'estado' => $this->estado,
       'direccion' => $this->direccion,
-      'descripcion' => $this->descripcion,
+      'comentarios' => $this->comentarios,
       'redes_sociales' => $redes_sociales,
       'url_pagina' => $this->url_pagina,
     ]);
 
-    $this->dispatchBrowserEvent('swal:eventoGuardado');
+    $this->dispatchBrowserEvent('swal:modal', [
+      'type' => 'success',
+      'title' => '¡Información guardada!',
+      'text' => '',
+      'icon' => 'success',
+    ]);
   }
 }

@@ -56,10 +56,10 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="descripcion">descripcion</label>
-            <textarea wire:model="descripcion" type="text" class="form-control" id="descripcion" aria-describedby="descripcion" placeholder="Agrega alguna información extra para el evento."></textarea>
-            @error('descripcion')
-              <small id="descripcion" class="form-text text-muted">{{$message}}</small>
+            <label for="comentarios">Comentarios generales</label>
+            <textarea wire:model="comentarios" type="text" class="form-control" id="comentarios" aria-describedby="comentarios" placeholder="Agrega alguna información extra para el evento."></textarea>
+            @error('comentarios')
+              <small id="comentarios" class="form-text text-muted">{{$message}}</small>
             @enderror
           </div>
           <div class="row">
@@ -121,12 +121,12 @@
           @endif 
         </section> --}}
         
-        <section class="col-12 mt-4 rounded-sm" style="background-color:lightgray">
+        <section class="col-12 mt-4 rounded-sm p-0" style="background-color:lightgray">
           {{-- <div class="row d-flex justify-content-between align-items-center px-3 py-2">
             <label for="url_pagina">Categorías del evento</label>
             <button class="btn btn-primary text-bold rounded-pill ml-2" data-toggle="modal" data-target="#categoriasModal">Agregar</button>
           </div> --}}
-          <livewire:categorias-organizador :evento="$evento"/>
+          <livewire:categorias-evento-organizador :evento="$evento"/>
         </section>
       </div>
     </div>
