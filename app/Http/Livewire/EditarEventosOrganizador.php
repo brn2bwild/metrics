@@ -47,51 +47,11 @@ class EditarEventosOrganizador extends Component
     $this->url_pagina = $this->evento->url_pagina;
   }
 
-  public function render()
-  {
+  public function render() {
     return view('livewire.editar-eventos-organizador');
   }
 
-  public function guardarImg() {
-    Validator::make(
-      ['imagen' => $this->imagen],
-      ['imagen' => 'required|image|max:1024'],
-    )->validate();
-
-    $path = $this->imagen->store('imagenes', 'public');
-    $evento = Evento::find($this->evento->id);
-    $evento->update([
-      'url_imagen' => $path,
-    ]);
-
-    $this->dispatchBrowserEvent('swal:modal', [
-      'type' => 'success',
-      'title' => '¡Imágen guardada!',
-      'text' => '',
-      'icon' => 'success',
-    ]);
-  }
-
-  public function confimarEliminarImg($id) {
-    $this->dispatchBrowserEvent('swal:eliminarImg', [
-      'type' => 'warning',
-      'title' => '¿Estás seguro de eliminar la imágen?',
-      'text' => '',
-      'icon' => 'warning',
-      'id' => $id,
-    ]);
-  }
-
-  public function eliminarImg() {
-    $evento = Evento::find($this->evento->id);
-    Storage::delete('public/'.$evento->url_imagen);
-    $evento->update([
-      'url_imagen' => null,
-    ]);
-    $this->imagen = null;
-  }
-
-  public function guardar() {
+    public function guardar() {
     $this->validate();
 
     $fecha_hora = Carbon::create($this->fecha.' '.$this->hora);

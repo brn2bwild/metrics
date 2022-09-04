@@ -127,7 +127,7 @@ class CategoriasEventoOrganizador extends Component
 
   public function editarCategoria($categoria) {
     $this->editarCategoria = true;
-    $this->accionCategoria = 'Editar Categoria';
+    $this->accionCategoria = 'Editar categoria';
     $this->id_categoria = $categoria['id'];
     $this->nombreCategoria = $categoria['nombre'];
     $this->descripcionCategoria = $categoria['descripcion'];
@@ -170,7 +170,7 @@ class CategoriasEventoOrganizador extends Component
     $this->id_categoria = '';
     $this->nombreCategoria = '';
     $this->descripcionCategoria = ''; 
-    $this->accionCategoria = 'Agregar wod';
+    $this->accionCategoria = 'Agregar categoría';
     $this->editarCategoria = false;
   }
 

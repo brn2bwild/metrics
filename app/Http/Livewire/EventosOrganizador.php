@@ -4,17 +4,22 @@ namespace App\Http\Livewire;
 
 use App\Models\Evento;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Illuminate\Support\Str;
+use Livewire\WithFileUploads;
 
 class EventosOrganizador extends Component
 {
-  public $modal;
+  use WithFileUploads;
+
   public $nombre, $fecha, $hora, $ciudad, $estado;
+  public $url_imagen, $url_evento, $imagen_evento;
 
   protected array $rules = [];
 
-  protected $listeners = ['eliminar'];
+  protected $listeners = ['eliminarEvento', 'eliminarImagenEvento'];
 
   public function rules () {
     return [
@@ -31,12 +36,96 @@ class EventosOrganizador extends Component
     return view('livewire.eventos-organizador', compact('eventos'));
   }
 
-  public function eliminar($url){
-    $evento = Evento::where('url_evento', $url)->first();
+  public function cerrarModalImagenEvento() {
+    $this->dispatchBrowserEvent('cerrarModalImagenEvento');
+    $this->limpiarDatosImagen();
+  }
+
+  public function limpiarDatosImagen() {
+    $this->url_evento = '';
+    $this->url_imagen = '';
+    $this->resetErrorBag();
+  }
+
+  public function eliminarImagenEvento() {
+    Storage::delete('public/'.$this->url_imagen);
+    Evento::where('url_imagen', $this->url_imagen)->update([
+      'url_imagen' => null,
+    ]);
+
+    $this->imagen_evento = null;
+
+    $this->dispatchBrowserEvent('swal:modal', [
+      'type' => 'success',
+      'title' => '¡Imágen eliminada!',
+      'text' => '',
+      'icon' => 'success',
+    ]);
+
+    $this->render();
+  }
+
+  public function confirmarEliminarImagenEvento($url_imagen) {
+    // $evento = Evento::where('url_imagen', $url);
+    $this->url_imagen = $url_imagen;
+
+    $this->dispatchBrowserEvent('swal:confirmarImagen', [
+      'type' => 'warning',
+      'title' => '¿Desas eliminar la imágen?',
+      'text' => '',
+      'icon' => 'warning',
+    ]);
+  }
+
+  public function guardarImagen() {
+    Validator::make(
+      ['imagen_evento' => $this->imagen_evento],
+      ['imagen_evento' => 'required|image|max:1024'],
+    )->validate();
+
+    $path = $this->imagen_evento->store('imagenes', 'public');
+    $evento = Evento::where('url_evento', $this->url_evento)->first();
+    $evento->update([
+      'url_imagen' => $path,
+    ]);
+
+    $this->dispatchBrowserEvent('swal:modal', [
+      'type' => 'success',
+      'title' => '¡Imágen guardada!',
+      'text' => '',
+      'icon' => 'success',
+    ]);
+
+    $this->cerrarModalImagenEvento();
+  }
+
+  public function cargarImagenEvento($url_evento) {
+    // $evento = Evento::where('url_imagen', $url)->first();
+    $this->url_evento = $url_evento;
+
+    $this->dispatchBrowserEvent('mostrarModalImagenEvento');
+  }
+
+  public function confirmarEliminarEvento($url_evento) {
+    $this->url_evento = $url_evento;
+
+    $this->dispatchBrowserEvent('swal:confirmarEvento', [
+      'type' => 'warning',
+      'title' => '¿Desas eliminar el evento?',
+      'text' => '',
+      'icon' => 'warning',
+    ]);
+  }
+
+  public function eliminarEvento(){
+    $evento = Evento::where('url_evento', $this->url_evento)->first();
+    if($evento->url_evento) {
+      Storage::delete('public/'.$evento->url_imagen);
+    }
     $evento->delete();
   }
 
-  public function guardar() {
+  public function guardarEvento() {
     $this->validate();
 
     $valorAleatorio = uniqid();
@@ -54,11 +143,17 @@ class EventosOrganizador extends Component
       'estado' => $this->estado,
     ]);
 
-    $this->limpiarDatos();
-    $this->dispatchBrowserEvent('eventoGuardado');
+    $this->dispatchBrowserEvent('swal:modal', [
+      'type' => 'success',
+      'title' => '¡Evento guardado!',
+      'text' => '',
+      'icon' => 'success',
+    ]);
+
+    $this->cerrarModalEvento();
   }
 
-  public function limpiarDatos() {
+  public function limpiarDatosEvento() {
     $this->nombre = '';
     $this->fecha = '';
     $this->hora = '';
@@ -66,11 +161,12 @@ class EventosOrganizador extends Component
     $this->estado = '';
   }
 
-  public function mostrarModal() {
-    $this->modal = true;
+  public function mostrarModalEvento() {
+    $this->limpiarDatosEvento();
+    $this->dispatchBrowserEvent('mostrarModalEvento');
   }
 
-  public function cerrarModal() {
-    $this->modal = false;
+  public function cerrarModalEvento() {
+    $this->dispatchBrowserEvent('cerrarModalEvento');
   }
 }
