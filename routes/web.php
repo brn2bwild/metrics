@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ListaEventosController;
 use App\Models\Evento;
 use Illuminate\Support\Facades\Route;
 
@@ -28,16 +29,29 @@ Route::middleware([
   })->name('dashboard');
 
   Route::get('/eventos', function () {
-    return view('eventos.index');
+    return view('eventos-organizador.index');
   })->name('eventos.index');
 
   Route::get('/eventos/{url}', function ($url) {
-    $evento = Evento::where('url_evento', $url)->first();
-    return view('eventos.editar', compact('evento'));
+    return view('eventos-organizador.editar', [
+      'evento' => Evento::where('url_evento', $url)->first()
+    ]);
   })->name('eventos.editar');
 
   Route::get('/eventos/{url}/atletas', function ($url) {
-    $evento = Evento::where('url_evento', $url)->first();
-    return view('eventos.atletas', compact('evento'));
+    return view('eventos-organizador.atletas', [
+      'evento' => Evento::where('url_evento', $url)->first()
+    ]);
   })->name('evento-atletas.index');
+
 });
+
+Route::get('/lista-eventos', function () {
+  return view('eventos-lista.index');
+})->name('lista-eventos.index');
+
+Route::get('/lista-eventos/{url}', function ($url) {
+  return view('eventos-lista.show', [
+    'evento' => Evento::where('url_evento', $url)->first()
+  ]);
+})->name('lista-eventos.show');

@@ -1,7 +1,7 @@
 <div class="w-full pb-2 pt-4">
   <div class="card">
-    <div class="card-header">
-      <h3>Eventos organizados</h3>
+    <div class="card-header d-flex align-items-center">
+      <h3 class="m-0">Eventos organizados</h3>
     </div>
     <div class="card-body">
       <div class="w-full d-flex justify-content-between mb-4">

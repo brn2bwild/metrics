@@ -22,4 +22,8 @@ class Evento extends Model
       'url_evento',
       'id_usuario',
     ];
+
+    public function organizador() {
+      return $this->belongsTo(User::class, 'id_usuario');
+    }
 }

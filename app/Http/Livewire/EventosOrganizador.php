@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Evento;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
@@ -30,9 +31,8 @@ class EventosOrganizador extends Component
     ];
   }
 
-  public function render()
-  {
-    $eventos = Evento::paginate(8);
+  public function render() {
+    $eventos = Evento::orderBy('id', 'DESC')->paginate(8);
     return view('livewire.eventos-organizador', compact('eventos'));
   }
 
@@ -141,6 +141,7 @@ class EventosOrganizador extends Component
       'fecha_hora' => $fecha_hora,
       'ciudad' => $this->ciudad,
       'estado' => $this->estado,
+      'id_usuario' => Auth::user()->id,
     ]);
 
     $this->dispatchBrowserEvent('swal:modal', [
