@@ -15,9 +15,13 @@
 
     <!-- Scripts y Css Vite -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <!--Icons -->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
   </head>
   <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
+    <div class="min-h-screen bg-black">
       @livewire('navigation-menu')
 
       <!-- Page Content -->

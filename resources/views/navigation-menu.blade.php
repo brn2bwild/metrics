@@ -11,7 +11,7 @@
               </div>
               <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                 <x-jet-nav-link href="{{ route('lista-eventos.index') }}" :active="request()->routeIs('lista-eventos.index')">
-                    {{ __('Events') }}
+                    {{ __('Eventos') }}
                 </x-jet-nav-link>
               </div>
 
@@ -27,12 +27,12 @@
           </div>
           <div class="hidden sm:flex sm:items-center sm:ml-6">
             @auth
-                <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                <a href="{{ url('/dashboard') }}" class="text-md font-bold font-mono text-gray-700 dark:text-gray-500 underline">Dashboard</a>
             @else
-                <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">{{__('Log in')}}</a>
+                <a href="{{ route('login') }}" class="text-md font-bold font-mono text-gray-700 dark:text-gray-500 underline">{{__('Iniciar Sesión')}}</a>
 
                 @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">{{__('Register')}}</a>
+                    <a href="{{ route('register') }}" class="ml-4 text-md font-bold font-mono text-gray-700 dark:text-gray-500 underline">{{__('Registrarse')}}</a>
                 @endif
             @endauth
               <!-- Teams Dropdown -->
@@ -154,7 +154,7 @@
   <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
     <div class="pt-2 pb-3 space-y-1">
       <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-          {{ __('Events') }}
+          {{ __('Eventos') }}
       </x-jet-responsive-nav-link>
     </div>
     @auth 
@@ -166,11 +166,11 @@
     @else
       <div class="pt-2 pb-3 space-y-1">
         <x-jet-responsive-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
-          {{__('Log in')}}
+          {{__('Iniciar Sesión')}}
         </x-jet-responsive-nav-link>
       </div>
 
-      @if (Route::has('register'))
+      @if (Route::has('Registrarse'))
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
               {{__('Register')}}

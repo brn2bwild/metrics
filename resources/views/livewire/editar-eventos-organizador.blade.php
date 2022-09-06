@@ -11,7 +11,7 @@
         <section class="col-12">
           <div class="form-group">
             <label for="nombre">Nombre del evento</label>
-            <input wire:model="nombre" type="text" class="form-control" id="nombre" aria-describedby="nombre" placeholder="¿Cuál es el nombre del evento?">
+            <input wire:model="nombre" type="text" class="form-control" id="nombre" aria-describedby="nombre" placeholder="Agrega el nombre de tu evento">
             @error('nombre')
               <small id="nombre" class="form-text text-muted">{{$message}}</small>
             @enderror
@@ -19,14 +19,14 @@
           <div class="row">
             <div class="col-12 col-sm-6 form-group">
               <label for="fecha">Fecha</label>
-              <input wire:model="fecha" type="date" class="form-control" id="fecha" aria-describedby="fecha" placeholder="¿Cuál es la fecha del evento?">
+              <input wire:model="fecha" type="date" class="form-control" id="fecha" aria-describedby="fecha" placeholder="Agrega la fecha de tu evento">
               @error('fecha')
                 <small id="fecha" class="form-text text-muted">{{$message}}</small>
               @enderror
             </div>
             <div class="col-12 col-sm-6 form-group">
               <label for="hora">Hora del evento</label>
-              <input wire:model="hora" type="time" class="form-control" id="hora" aria-describedby="hora" placeholder="¿Cuál es la hora del evento?">
+              <input wire:model="hora" type="time" class="form-control" id="hora" aria-describedby="hora" placeholder="Agrega la hora de tu evento">
               @error('hora')
                 <small id="hora" class="form-text text-muted">{{$message}}</small>
               @enderror
@@ -49,7 +49,7 @@
             </div>
             <div class="col-12 col-sm-6 form-group">
               <label for="direccion">Dirección</label>
-              <input wire:model="direccion" type="text" class="form-control" id="direccion" aria-describedby="direccion" placeholder="¿Cuál es la dirección del evento?">
+              <input wire:model="direccion" type="text" class="form-control" id="direccion" aria-describedby="direccion" placeholder="¿Cuál es la dirección donde será evento?">
               @error('direccion')
                 <small id="direccion" class="form-text text-muted">{{$message}}</small>
               @enderror
@@ -57,7 +57,7 @@
           </div>
           <div class="form-group">
             <label for="comentarios">Comentarios generales</label>
-            <textarea wire:model="comentarios" type="text" class="form-control" id="comentarios" aria-describedby="comentarios" placeholder="Agrega alguna información extra para el evento."></textarea>
+            <textarea wire:model="comentarios" type="text" class="form-control" id="comentarios" aria-describedby="comentarios" placeholder="Agrega aquí alguna información extra para el evento."></textarea>
             @error('comentarios')
               <small id="comentarios" class="form-text text-muted">{{$message}}</small>
             @enderror
@@ -65,16 +65,23 @@
           <div class="row">
             <div class="col-12 col-sm-6 form-group">
               <label for="facebook">Facebook</label>
-              <input wire:model="facebook" type="text" class="form-control" id="facebook" aria-describedby="facebook" placeholder="¿Tiene página de facebook?">
+              <input wire:model="facebook" type="text" class="form-control" id="facebook" aria-describedby="facebook" placeholder="Puedes agregar la página de facebook de tu evento">
               @error('facebook')
                 <small id="facebook" class="form-text text-muted">{{$message}}</small>
               @enderror
             </div>
             <div class="col-12 col-sm-6 form-group">
               <label for="instagram">Instagram</label>
-              <input wire:model="instagram" type="text" class="form-control" id="instagram" aria-describedby="instagram" placeholder="¿Está en instagram?">
+              <input wire:model="instagram" type="text" class="form-control" id="instagram" aria-describedby="instagram" placeholder="Puedes agregar un perfil de instagram">
               @error('instagram')
                 <small id="instagram" class="form-text text-muted">{{$message}}</small>
+              @enderror
+            </div>
+            <div class="col-12 col-sm-6 form-group">
+              <label for="whatsapp">Whatsapp</label>
+              <input wire:model="whatsapp" type="text" class="form-control" id="whatsapp" aria-describedby="whatsapp" placeholder="Puedes agregar un número de contacto de whatsapp">
+              @error('whatsapp')
+                <small id="whatsapp" class="form-text text-muted">{{$message}}</small>
               @enderror
             </div>
           </div>

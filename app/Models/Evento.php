@@ -15,7 +15,7 @@ class Evento extends Model
       'ciudad',
       'estado',
       'direccion',
-      'descripcion',
+      'comentarios',
       'redes_sociales',
       'url_pagina',
       'url_imagen',
@@ -25,5 +25,9 @@ class Evento extends Model
 
     public function organizador() {
       return $this->belongsTo(User::class, 'id_usuario');
+    }
+    
+    public function categorias() {
+      return $this->hasMany(Categoria::class, 'id_evento');
     }
 }

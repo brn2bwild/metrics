@@ -15,7 +15,7 @@ class Categoria extends Model
       'id_evento',
     ];
 
-    public function evento () {
+    public function evento() {
       return $this->belongsTo(Evento::class, 'id_evento');
     }
 

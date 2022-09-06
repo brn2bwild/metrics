@@ -9,8 +9,8 @@
     @foreach ($eventos as $evento)
       <a href="{{route('lista-eventos.show', $evento->url_evento)}}">
         <div class="max-w-sm rounded overflow-hidden shadow-lg">
-          <img class="w-full" src="{{($evento->url_imagen) ? 'storage/'.$evento->url_imagen : asset('storage/images/jumbotron-image.jpg')}}" alt="{{$evento->nombre}}">
-          <div class="px-6 py-4">
+          <img class="w-full" src="{{($evento->url_imagen) ? asset('storage/'.$evento->url_imagen) : asset('storage/images/jumbotron-image.jpg')}}" alt="{{$evento->nombre}}">
+          <div class="px-6 py-4 bg-yellow-300">
             <div class="font-bold text-xl text-center">{{$evento->nombre}}</div>
             {{-- <p class="text-gray-700 text-base">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.

@@ -1,5 +1,5 @@
 <x-app-layout>
-  <div class="w-full flex justify-center p-8" style="height: 40vh">
+  {{-- <div class="w-full flex justify-center p-8" style="height: 40vh">
     <div class="max-w-sm w-full lg:max-w-full lg:flex justify-center h-full">
       <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden shadow-md" style="background-image: url('{{($evento->url_imagen) ? asset('storage/'.$evento->url_imagen) : asset('storage/images/jumbotron-image.jpg')}}')" title="{{$evento->nombre}}">
       </div>
@@ -12,16 +12,47 @@
             Members only
           </p>
           <div class="text-gray-900 font-bold text-xl mb-2">{{$evento->nombre}}</div>
-          <p class="text-gray-700 text-base">{{$evento->comentarios}}</p>
+          <p class="text-gray-700 text-base mb-4">{{$evento->comentarios}}</p>
+          <div class="w-full lg:w-3/4 flex justify-between gap-4 mb-4">
+            @php
+              $redes = json_decode($evento->redes_sociales)    
+            @endphp
+            @isset ($redes->facebook)
+              @if ($redes->facebook !== '')
+                <a href="{{$redes->facebook}}" class="bg-transparent hover:bg-gray-500 text-gray-700 font-semibold hover:text-white p-2 border-2 border-gray-500 hover:border-transparent rounded-full text-lg flex align-middle"><i class='bx bxl-facebook'></i></a>
+              @endif
+            @endisset
+            @isset ($redes->instagram)
+              @if ($redes->instagram !== '')
+                <a href="{{$redes->instagram}}" class="bg-transparent hover:bg-gray-500 text-gray-700 font-semibold hover:text-white p-2 border-2 border-gray-500 hover:border-transparent rounded-full text-lg flex align-middle"><i class='bx bxl-instagram'></i></a>
+              @endif
+            @endisset
+            @isset ($redes->whatsapp)
+              @if ($redes->whatsapp !== '')
+                <a href="{{$redes->whatsapp}}" class="bg-transparent hover:bg-gray-500 text-gray-700 font-semibold hover:text-white p-2 border-2 border-gray-500 hover:border-transparent rounded-full text-lg flex align-middle"><i class='bx bxl-whatsapp'></i></a>
+              @endif
+            @endisset
+          </div>
+          <div class="w-full lg:1/2">
+            @if ($evento->url_pagina) 
+              <a href="{{$evento->url_pagina}}"><p class="text-md underline">Página oficial del evento</p></a>
+            @endif
+          </div>
         </div>
         <div class="flex items-center">
-          <img class="w-10 h-10 rounded-full mr-4" src="https://v1.tailwindcss.com/img/card-top.jpg" alt="Avatar of Jonathan Reinink">
+          <img class="w-10 h-10 rounded-full mr-4" src="{{($evento->url_imagen) ? asset('storage/'.$evento->url_imagen) : asset('storage/images/jumbotron-image.jpg')}}">
           <div class="text-sm">
             <p class="text-gray-900 leading-none">{{$evento->organizador->name}}</p>
-            <p class="text-gray-600">Aug 18</p>
+            @php
+              use Carbon\Carbon;
+              $fecha = new Carbon($evento->fecha_hora);
+            @endphp
+
+            <p class="text-gray-600">{{$fecha}}</p>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
+  <livewire:mostrar-evento :evento="$evento"/>
 </x-app-layout>

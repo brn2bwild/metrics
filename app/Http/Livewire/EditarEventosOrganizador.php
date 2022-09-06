@@ -28,8 +28,9 @@ class EditarEventosOrganizador extends Component
       'estado' => 'required|max:100',
       'direccion' => 'max:100',
       'comentarios' => 'max:200',
-      'facebook' => 'max:100',
-      'instagram' => 'max:100',
+      'facebook' => 'max:150',
+      'instagram' => 'max:150',
+      'whatsapp' => 'max:150',
       'url_pagina' => 'max:100',
     ];
   }
@@ -44,6 +45,7 @@ class EditarEventosOrganizador extends Component
     $array_redes = json_decode($this->evento->redes_sociales);
     $this->facebook = ($array_redes->facebook) ?? '';
     $this->instagram = ($array_redes->instagram) ?? '';
+    $this->whatsapp = ($array_redes->whatsapp) ?? '';
     $this->url_pagina = $this->evento->url_pagina;
   }
 
@@ -55,7 +57,7 @@ class EditarEventosOrganizador extends Component
     $this->validate();
 
     $fecha_hora = Carbon::create($this->fecha.' '.$this->hora);
-    $array_redes = ['facebook' => $this->facebook, 'instagram' => $this->instagram];
+    $array_redes = ['facebook' => $this->facebook, 'instagram' => $this->instagram, 'whatsapp' => $this->whatsapp];
     $redes_sociales = json_encode($array_redes);
 
     Evento::updateOrCreate([
