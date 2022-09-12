@@ -42,7 +42,7 @@
             <p class="text-gray-600 mb-0">Agregado {{$fecha_creacion}}</p>
           </div>
           <div>
-            <p class="bg-transparent hover:bg-gray-800 text-gray-900 font-semibold hover:text-white py-1 px-3 border-2 border-gray-800 hover:border-transparent rounded-full text-lg">Inscribirse</p>
+            <span wire:click="verificarInscripcion()" class="bg-transparent hover:bg-gray-800 text-gray-900 font-semibold hover:text-white py-1 px-3 border-2 border-gray-800 hover:border-transparent rounded-full text-lg" style="cursor: pointer">Inscribirse</span>
           </div>
         </div>
       </div>
@@ -58,7 +58,6 @@
 
   <!-- Sección de los wods -->
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-8 pb-4">
-    {{-- <div class=" w-full justify-center px-6 pt-4 pb-2"> --}}
     @if ($wods_categoria != null)
       @forelse ($wods_categoria as $wod)
       <div class="flex justify-center">
@@ -71,14 +70,10 @@
               {{$wod->descripcion}}
             </p>
           </div>
-          {{-- <div class="py-3 px-6 border-t border-gray-300 text-gray-600">
-            <h5 class="text-gray-900 text-xl font-medium">Special title treatment</h5>
-          </div> --}}
         </div>
       </div> 
       @empty
       @endforelse
     @endif
-    {{-- </div> --}}
   </div>
 </div>

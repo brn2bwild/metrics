@@ -19,6 +19,8 @@
     <!--Icons -->
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 
+    <!-- Sweet Alert CDN -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
   <body class="font-sans antialiased">
     <div class="min-h-screen bg-black">

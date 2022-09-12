@@ -1,4 +1,4 @@
-<div>
+<div class="py-4 px-6">
   <div class="w-full flex justify-end pb-4">
     {{-- <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
       Buscar evento por nombre

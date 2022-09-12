@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Categoria;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class MostrarEvento extends Component
@@ -27,5 +28,25 @@ class MostrarEvento extends Component
     // dd($categoria);
     $categoria = Categoria::find($id);
     $this->wods_categoria = $categoria->wods;
+  }
+
+  public function verificarInscripcion() {
+    if(Auth::user() != null) {
+      $this->dispatchBrowserEvent('swal:modal', [
+        'type' => 'success',
+        'title' => 'Registrado',
+        'text' => '',
+        'icon' => 'success',
+      ]);
+    } else {
+      $this->dispatchBrowserEvent('swal:modal', [
+        'type' => 'success',
+        'title' => 'No registrado',
+        'text' => '',
+        'icon' => 'success',
+      ]);
+    }
+
+
   }
 }

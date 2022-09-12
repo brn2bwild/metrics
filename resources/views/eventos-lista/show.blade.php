@@ -55,4 +55,27 @@
     </div>
   </div> --}}
   <livewire:mostrar-evento :evento="$evento"/>
+
+
+  <script>
+    window.addEventListener('swal:modal', event => {
+      Swal.fire({
+        title: event.detail.title,
+        text: event.detail.text,
+        icon: event.detail.icon,
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+        }
+      })
+    })
+  </script>
 </x-app-layout>
