@@ -32,8 +32,9 @@ class EventosOrganizador extends Component
   }
 
   public function render() {
-    $eventos = Evento::orderBy('id', 'DESC')->paginate(8);
-    return view('livewire.eventos-organizador', compact('eventos'));
+    return view('livewire.eventos-organizador', [
+      'eventos' => Evento::where('id_usuario', Auth::user()->id)->orderBy('id', 'DESC')->paginate(8)
+    ]);
   }
 
   public function cerrarModalImagenEvento() {
@@ -145,7 +146,6 @@ class EventosOrganizador extends Component
     ]);
 
     $this->dispatchBrowserEvent('swal:modal', [
-      'type' => 'success',
       'title' => '¡Evento guardado!',
       'text' => '',
       'icon' => 'success',

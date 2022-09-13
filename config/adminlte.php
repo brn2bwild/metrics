@@ -244,7 +244,7 @@ return [
         // ],
         [
           'text' => 'Mis eventos',
-          'url'  => 'admin/blog',
+          'route'  => 'participaciones.index',
           // 'can'  => 'manage-blog',
         ],
         [

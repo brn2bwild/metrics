@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-  <livewire:editar-eventos-organizador :evento="$evento"/>
+  {{-- <livewire:editar-eventos-organizador :evento="$evento"/> --}}
   @livewireScripts
 @stop
 

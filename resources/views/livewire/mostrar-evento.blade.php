@@ -41,9 +41,11 @@
             <p class="text-gray-900 leading-none">{{$evento->organizador->name}}</p>
             <p class="text-gray-600 mb-0">Agregado {{$fecha_creacion}}</p>
           </div>
-          <div>
-            <span wire:click="verificarInscripcion()" class="bg-transparent hover:bg-gray-800 text-gray-900 font-semibold hover:text-white py-1 px-3 border-2 border-gray-800 hover:border-transparent rounded-full text-lg" style="cursor: pointer">Inscribirse</span>
-          </div>
+          @if (!$registrado)
+            <div>
+              <span wire:click="verificarInscripcion()" class="bg-transparent hover:bg-gray-800 text-gray-900 font-semibold hover:text-white py-1 px-3 border-2 border-gray-800 hover:border-transparent rounded-full text-lg" style="cursor: pointer">Inscribirse</span>
+            </div> 
+          @endif
         </div>
       </div>
     </div>
@@ -76,4 +78,25 @@
       @endforelse
     @endif
   </div>
+
+  <template id="my-template">
+    <swal-title>
+      Selecciona la categoría a la que deseas inscribirte
+    </swal-title>
+    <swal-input type="select" placeholder="Selecciona una categoría" value="">
+      @foreach ($evento->categorias as $categoria)
+        <swal-input-option value="{{$categoria->nombre}}">{{$categoria->nombre}}</swal-input-option> 
+      @endforeach
+    </swal-input>
+    <swal-button type="confirm" color="info">
+      Inscribirme
+    </swal-button>
+    <swal-button type="deny">
+      Cancelar
+    </swal-button>
+    <swal-param name="allowEscapeKey" value="false" />
+    <swal-param
+      name="customClass"
+      value='{ "popup": "my-popup" }' />
+  </template>
 </div>

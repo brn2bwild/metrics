@@ -63,18 +63,25 @@
         title: event.detail.title,
         text: event.detail.text,
         icon: event.detail.icon,
-        showCancelButton: true,
         confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-          )
-        }
+        confirmButtonText: 'Aceptar',
+        footer: '<a href="/login">Iniciar Sesión</a><a class="ml-4" href="/register">Crear una cuenta</a>'
+      })
+    })
+
+    window.addEventListener('swal:confirmar', event => {
+      Swal.fire({
+        template: '#my-template'
+      //   title: event.detail.title,
+      //   text: event.detail.text,
+      //   icon: event.detail.icon,
+      //   showDenyButton: true,
+      //   confirmButtonText: 'Inscribirse',
+      //   denyButtonText: 'Cancelar',
+      //   confirmButtonColor: '#3085d6',
+      //   cancelButtonColor: '#d33',
+      }).then((resultado) => {
+        if(resultado.isConfirmed) { window.livewire.emit('inscribirUsuario', resultado.value) }
       })
     })
   </script>

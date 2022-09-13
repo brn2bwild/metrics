@@ -1,13 +1,13 @@
 <div class="w-full pb-2 pt-4">
   <div class="card">
     <div class="card-header d-flex align-items-center">
-      <h3 class="m-0">Eventos organizados</h3>
+      <h5 class="m-0">Eventos organizados</h5>
     </div>
     <div class="card-body">
       <div class="w-full d-flex justify-content-between mb-4">
         <button wire:click="mostrarModalEvento()" class="btn btn-primary rounded-pill text-bold" type="button">Agregar</button>
-        <div>
-          <input class="form-control" type="text" placeholder="Buscar evento">
+        <div class="row col-6">
+          <input class="form-control" type="text" placeholder="Buscar evento por nombre">
         </div>
       </div>
       <div class="w-full row d-flex justify-content-start">
@@ -28,11 +28,11 @@
                   </label>
                 @endif
               </div>
-              <div class="card-body">
-                <h5 class="card-title">{{$evento->nombre}}</h5>
-                <p class="card-text mb-0">{{$evento->fecha_hora}}</p>
-                <p class="card-text mb-0">{{$evento->ciudad}}</p>
-                <p class="card-text mb-0">{{$evento->estado}}</p>
+              <div class="card-body py-2">
+                <h5 class="card-title"><strong>{{$evento->nombre}}</strong></h5>
+                <p class="card-text mb-0">Fecha y hora: <strong>{{$evento->fecha_hora}}</strong></p>
+                {{-- <p class="card-text mb-0">{{$evento->ciudad}}</p>
+                <p class="card-text mb-0">{{$evento->estado}}</p> --}}
               </div>
               <div class="card-footer text-muted">
                 <div class="d-flex justify-content-between">

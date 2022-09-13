@@ -19,18 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::middleware([
-  'auth:sanctum',
-  config('jetstream.auth_session'),
-  'verified'
-])->group(function () {
-  Route::get('/dashboard', function () {
-    return view('dashboard');
-  })->name('dashboard');
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
 
-  Route::get('/eventos', function () {
-    return view('eventos-organizador.index');
-  })->name('eventos.index');
+  Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
+
+  Route::get('/eventos', function () { return view('eventos-organizador.index'); })->name('eventos.index');
 
   Route::get('/eventos/{url}', function ($url) {
     return view('eventos-organizador.editar', [
@@ -44,6 +37,13 @@ Route::middleware([
     ]);
   })->name('evento-atletas.index');
 
+  Route::get('/participaciones', function () { return view('eventos-atleta.index'); })->name('participaciones.index');
+
+  Route::get('/participaciones/{url}', function($url) {
+    return view('eventos-atleta.mostrar', [
+      'evento' => Evento::where('url_evento', $url)->first()
+    ]);
+  })->name('participaciones.mostrar');
 });
 
 Route::get('/lista-eventos', function () {
