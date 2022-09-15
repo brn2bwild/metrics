@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <table>
+        <table class="table table-strip">
           <thead>
             <tr>
               <th>Nombre completo</th>
@@ -16,15 +16,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>sdasd</td>
-              <td>dasdasda</td>
-            </tr>
+            @foreach ($evento->registros as $registro)
+              <tr>
+                <td>{{$registro->usuario->name}}</td>
+                <td>{{$registro->categoria->nombre}}</td>
+              </tr>
+            @endforeach
           </tbody>
         </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
       </div>
     </div>

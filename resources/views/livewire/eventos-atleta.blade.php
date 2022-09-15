@@ -1,6 +1,6 @@
 <div class="w-full pb-2 pt-4">
   <div class="card">
-    <div class="card-header d-flex align-items-center">
+    <div class="card-header">
       <h5 class="m-0">Eventos en los que participas</h5>
     </div>
     <div class="card-body">

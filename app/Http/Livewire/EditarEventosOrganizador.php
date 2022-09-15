@@ -34,6 +34,7 @@ class EditarEventosOrganizador extends Component
       'url_pagina' => 'max:100',
     ];
   }
+  
   public function mount () {
     $this->nombre = $this->evento->nombre;
     $this->fecha = Carbon::create($this->evento->fecha_hora)->toDateString();

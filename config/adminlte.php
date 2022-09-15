@@ -258,7 +258,7 @@ return [
         ],
         [
           'text' => 'Usuarios',
-          'url' => '#',
+          'route' => 'usuarios.index',
           'can' => 'eliminar usuarios',
         ],
         [

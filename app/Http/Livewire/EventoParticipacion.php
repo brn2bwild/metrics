@@ -25,6 +25,8 @@ class EventoParticipacion extends Component
     $this->instagram = ($array_redes->instagram) ?? '';
     $this->whatsapp = ($array_redes->whatsapp) ?? '';
     $this->url_pagina = $this->evento->url_pagina;
+    $this->registro = Registro::where('id_usuario', Auth::user()->id)->where('id_evento', $this->evento->id)->first();
+    $this->categoria = $this->registro->categoria->nombre;
   }
 
   public function render() {

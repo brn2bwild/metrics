@@ -17,17 +17,17 @@
           <div class="row w-full d-flex justify-content-between">
             @if ($instagram != '')
               <div class="col-12 col-md-4 text-center mb-2 mb-md-0 p-0">
-                <a href="" class="card-link text-bold">Ver página de Instagram</a>
+                <a href="{{$instagram}}" class="card-link text-bold">Ver página de Instagram</a>
               </div>
             @endif
             @if ($facebook != '')
               <div class="col-12 col-md-4 text-center mb-2 mb-md-0 p-0">
-                <a href="" class="card-link text-bold">Ver página de Facebook</a>
+                <a href="{{$facebook}}" class="card-link text-bold">Ver página de Facebook</a>
               </div>
             @endif
             @if ($url_pagina != '')
               <div class="col-12 col-md-4 text-center mb-2 mb-md-0 p-0">
-                <a href="" class="card-link text-bold">Ver página oficial</a>
+                <a href="{{$url_pagina}}" class="card-link text-bold">Ver página oficial</a>
               </div>
             @endif
           </div>

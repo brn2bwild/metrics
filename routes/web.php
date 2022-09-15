@@ -19,32 +19,32 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard')->middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:administrador|organizador|usuario']);
 
-  Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
+Route::get('/usuarios', function() { return view('usuarios.index'); })->name('usuarios.index')->middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:administrador']);
 
-  Route::get('/eventos', function () { return view('eventos-organizador.index'); })->name('eventos.index');
+Route::get('/eventos', function () { return view('eventos-organizador.index'); })->name('eventos.index')->middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:administrador|organizador']);
 
-  Route::get('/eventos/{url}', function ($url) {
-    return view('eventos-organizador.editar', [
-      'evento' => Evento::where('url_evento', $url)->first()
-    ]);
-  })->name('eventos.editar');
+Route::get('/eventos/{url}', function ($url) {
+  return view('eventos-organizador.editar', [
+    'evento' => Evento::where('url_evento', $url)->first()
+  ]);
+})->name('eventos.editar')->middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:administrador|organizador']);
 
-  Route::get('/eventos/{url}/atletas', function ($url) {
-    return view('eventos-organizador.atletas', [
-      'evento' => Evento::where('url_evento', $url)->first()
-    ]);
-  })->name('evento-atletas.index');
+Route::get('/eventos/{url}/atletas', function ($url) {
+  return view('eventos-organizador.atletas', [
+    'evento' => Evento::where('url_evento', $url)->first()
+  ]);
+})->name('evento-atletas.index')->middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:administrador|organizador']);
 
-  Route::get('/participaciones', function () { return view('eventos-atleta.index'); })->name('participaciones.index');
+Route::get('/participaciones', function () { return view('eventos-atleta.index'); })->name('participaciones.index')->middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:administrador|organizador|usuario']);
 
-  Route::get('/participaciones/{url}', function($url) {
-    return view('eventos-atleta.mostrar', [
-      'evento' => Evento::where('url_evento', $url)->first()
-    ]);
-  })->name('participaciones.mostrar');
-});
+Route::get('/participaciones/{url}', function($url) {
+  return view('eventos-atleta.mostrar', [
+    'evento' => Evento::where('url_evento', $url)->first()
+  ]);
+})->name('participaciones.mostrar')->middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:administrador|organizador|usuario']);
+// Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {});
 
 Route::get('/lista-eventos', function () {
   return view('eventos-lista.index');

@@ -30,4 +30,8 @@ class Evento extends Model
     public function categorias() {
       return $this->hasMany(Categoria::class, 'id_evento');
     }
+
+    public function registros() {
+      return $this->hasMany(Registro::class, 'id_evento');
+    }
 }
