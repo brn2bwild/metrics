@@ -3,10 +3,7 @@
     <div class="card-body">
       <div class="row">
         <section class="col-12 d-flex justify-content-end">
-          {{-- <label for="">Atletas inscritos al evento</label> --}}
-          {{-- <div class="row px-2"> --}}
             <button href="" type="button" class="btn btn-primary text-bold rounded-pill" data-toggle="modal" data-target="#modalAtletas">Lista de atletas inscritos <span class="badge badge-light ml-2">4</span></button>
-          {{-- </div> --}}
         </section>
         <section class="col-12">
           <div class="form-group">

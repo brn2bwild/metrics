@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-  {{-- <livewire:editar-eventos-organizador :evento="$evento"/> --}}
+  <livewire:evento-participacion :evento="$evento"/>
   @livewireScripts
 @stop
 
@@ -60,13 +60,13 @@
       $('#categoriasModal').modal('hide')
     })
 
-    window.addEventListener('mostrarWodsModal', event => {
-      $('#wodsModal').modal('show')
-    })
+    // window.addEventListener('mostrarWodsModal', event => {
+    //   $('#wodsModal').modal('show')
+    // })
 
-    window.addEventListener('cerrarWodsModal', event => {
-      $('#wodsModal').modal('hide')
-    })
+    // window.addEventListener('cerrarWodsModal', event => {
+    //   $('#wodsModal').modal('hide')
+    // })
     // $(function () {
     //   $('[data-toggle="tooltip"]').tooltip()
     // })

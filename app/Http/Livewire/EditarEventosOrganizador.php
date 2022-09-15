@@ -53,7 +53,7 @@ class EditarEventosOrganizador extends Component
     return view('livewire.editar-eventos-organizador');
   }
 
-    public function guardar() {
+  public function guardar() {
     $this->validate();
 
     $fecha_hora = Carbon::create($this->fecha.' '.$this->hora);
