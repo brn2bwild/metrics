@@ -15,6 +15,12 @@
                 </x-jet-nav-link>
               </div>
 
+              <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-jet-nav-link href="#" :active="request()->routeIs('eventos.index')">
+                    {{ __('Eventos') }}
+                </x-jet-nav-link>
+              </div>
+
               <!-- Navigation Links -->
               @auth
               {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -27,12 +33,12 @@
           </div>
           <div class="hidden sm:flex sm:items-center sm:ml-6">
             @auth
-                <a href="{{ url('/dashboard') }}" class="text-md font-bold font-mono text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                <a href="{{ url('/dashboard') }}" class="text-md font-bold font-mono text-gray-700 dark:text-gray-500 underline hover:text-gray-900">Dashboard</a>
             @else
-                <a href="{{ route('login') }}" class="text-md font-bold font-mono text-gray-700 dark:text-gray-500 underline">{{__('Iniciar Sesión')}}</a>
+                <a href="{{ route('login') }}" class="text-md font-bold font-mono text-gray-700 dark:text-gray-500 underline hover:text-gray-900">{{__('Iniciar Sesión')}}</a>
 
                 @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="ml-4 text-md font-bold font-mono text-gray-700 dark:text-gray-500 underline">{{__('Registrarse')}}</a>
+                    <a href="{{ route('register') }}" class="ml-4 text-md font-bold font-mono text-gray-700 dark:text-gray-500 underline hover:text-gray-900">{{__('Registrarse')}}</a>
                 @endif
             @endauth
               <!-- Teams Dropdown -->

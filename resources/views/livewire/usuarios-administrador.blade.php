@@ -16,11 +16,10 @@
           <div class="card" style="width: 18rem;">
             <div class="card-body">
               <h5 class="card-title"><strong>{{$usuario->name}}</strong></h5><br>
-              <h6 class="card-text text-muted mb-0">{{$usuario->email}}</h6><br>
-              {{-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
+              <h6 class="card-text text-muted mb-2">{{$usuario->email}}<br><strong>{{ucfirst($usuario->getRoleNames()[0])}}</strong></h6>
               <div class="d-flex justify-content-between">
-                <a wire:click="verUsuario('{{$usuario->id}}')" class="card-link"  style="cursor: pointer">Ver información</a>
-                <a class="card-link text-danger" style="cursor: pointer">Eliminar</a>
+                <a wire:click="editarUsuario('{{$usuario->id}}')" class="card-link"  style="cursor: pointer">Editar</a>
+                <a wire:click="confirmarEliminar('{{$usuario->id}}')" class="card-link text-danger" style="cursor: pointer">Eliminar</a>
               </div>
             </div>
           </div>
@@ -35,8 +34,8 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="tituloModalUsuario">@if ($ver)
-            Datos usuario              
+          <h5 class="modal-title" id="tituloModalUsuario">@if ($editar)
+            Editar usuario              
           @else
             Crear usuario
           @endif</h5>
@@ -48,19 +47,19 @@
           <form>
             <div class="form-group">
               <label for="nombre">Nombre del usuario</label>
-              <input wire:model="name" type="text" class="form-control" id="name" aria-describedby="name" placeholder="¿Cuál es el nombre del usuario?" @if ($ver) disabled @endif>
+              <input wire:model="name" type="text" class="form-control" id="name" aria-describedby="name" placeholder="¿Cuál es el nombre del usuario?">
               @error('name')
                 <small class="form-text text-muted">{{$message}}</small>
               @enderror
             </div>
             <div class="form-group">
               <label for="email">Correo electrónico</label>
-              <input wire:model="email" type="email" class="form-control" id="email" aria-describedby="email" placeholder="¿Cuál es el email del usuario?" @if ($ver) disabled @endif>
+              <input wire:model="email" type="email" class="form-control" id="email" aria-describedby="email" placeholder="¿Cuál es el email del usuario?">
               @error('email')
                 <small class="form-text text-muted">{{$message}}</small>
               @enderror
             </div>
-            @if (!$ver)
+            @if (!$editar)
               <div class="form-group">
                 <label for="password">Contraseña</label>
                 <input wire:model="password" type="password" class="form-control" id="password" aria-describedby="password" placeholder="Introduce una contraseña para el usuario">
@@ -76,36 +75,23 @@
                 @enderror
               </div>
             @endif
-            @if ($ver)
-              <div class="form-group">
-                <label for="rol">Rol</label>
-                <input wire:model="rol" type="text" class="form-control" id="rol" aria-describedby="rol" disabled>
-                @error('rol')
-                  <small class="form-text text-muted">{{$message}}</small>
-                @enderror
-              </div>
-            @else
-              <div class="form-group">
-                <label for="rol">Rol</label>
-                <select wire:model="rol" class="form-control">
-                  <option value="">Selecciona un rol para el usuario</option>
-                  @foreach ($roles as $rol)
-                    <option value="{{$rol->name}}">{{ucfirst($rol->name)}}</option>
-                  @endforeach
-                </select>
-                {{-- <input wire:model="rol" type="password" class="form-control" id="rol" aria-describedby="rol" placeholder="Confirma la contraseña para el usuario"> --}}
-                @error('rol')
-                  <small class="form-text text-muted">{{$message}}</small>
-                @enderror
-              </div>
-            @endif
+            <div class="form-group">
+              <label for="rol">Rol</label>
+              <select wire:model="rol" class="form-control">
+                <option value="">Selecciona un rol para el usuario</option>
+                @foreach ($roles as $rol)
+                  <option value="{{$rol->name}}">{{ucfirst($rol->name)}}</option>
+                @endforeach
+              </select>
+              @error('rol')
+                <small class="form-text text-muted">{{$message}}</small>
+              @enderror
+            </div>
           </form>
         </div>
         <div class="modal-footer">
           <button wire:click="cerrarModalUsuario()" type="button" class="btn btn-secondary">Cerrar</button>
-          @if (!$ver)
-            <button wire:click="guardarUsuario()" type="button" class="btn btn-primary">Guardar</button>  
-          @endif
+          <button @if($editar) wire:click="guardarUsuarioEditado()" @else wire:click="guardarUsuario()" @endif  type="button" class="btn btn-primary">Guardar</button> 
         </div>
       </div>
     </div>
