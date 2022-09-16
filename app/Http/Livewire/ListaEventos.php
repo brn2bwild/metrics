@@ -9,8 +9,7 @@ class ListaEventos extends Component
 {
   public $busqueda;
 
-  public function render()
-  {
+  public function render() {
     $buscar = '%'.$this->busqueda.'%';
     return view('livewire.lista-eventos',[
       'eventos' => Evento::where('nombre', 'like', $buscar)

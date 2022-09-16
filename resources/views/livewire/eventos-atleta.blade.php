@@ -13,7 +13,7 @@
         @foreach ($registros as $registro)
           <div class="d-flex justify-content-center col-12 col-sm-6 col-md-4 col-xl-3">
             <div class="card" style="width: 18rem;">
-              <img class="card-img-top" src="{{($registro->evento->url_imagen) ? 'storage/'.$registro->evento->url_imagen : asset('storage/images/jumbotron-image.jpg')}}" alt="..." height="200px" style="border-radius: 5px 5px 0 0">
+              <img class="card-img-top" src="{{($registro->evento->url_imagen) ? 'storage/'.$registro->evento->url_imagen : asset('storage/imagenes/jumbotron-image.jpg')}}" alt="..." height="200px" style="border-radius: 5px 5px 0 0">
               <div class="card-body py-2">
                 <h5 class="card-title">{{$registro->evento->nombre}}</h5>
                 <p class="card-text mb-0">{{$registro->evento->fecha_hora}}</p>

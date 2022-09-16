@@ -4,7 +4,7 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot> --}}
-    <div class="bg-gray-600" style="background-image: url('{{asset('storage/images/jumbotron-image.jpg')}}'); background-size: cover;background-position: center;">
+    <div class="bg-gray-600" style="background-image: url('{{asset('storage/imagenes/jumbotron-image.jpg')}}'); background-size: cover;background-position: center;">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-center">
         <div class="grid grid-cols-4 md:grid-cols-8">
           <div class="col-span-4 text-center md:text-right p-8">

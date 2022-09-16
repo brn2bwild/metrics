@@ -84,7 +84,7 @@ class EventosOrganizador extends Component
       ['imagen_evento' => 'required|image|max:1024'],
     )->validate();
 
-    $path = $this->imagen_evento->store('imagenes', 'public');
+    $path = $this->imagen_evento->store('eventos', 'public');
     $evento = Evento::where('url_evento', $this->url_evento)->first();
     $evento->update([
       'url_imagen' => $path,

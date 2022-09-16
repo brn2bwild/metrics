@@ -14,7 +14,7 @@
         @foreach ($eventos as $evento)
           <div class="d-flex justify-content-center col-12 col-sm-6 col-md-4 col-xl-3">
             <div class="card" style="width: 18rem;">
-              <img class="card-img-top" src="{{($evento->url_imagen) ? 'storage/'.$evento->url_imagen : asset('storage/images/jumbotron-image.jpg')}}" alt="..." height="200px" style="border-radius: 5px 5px 0 0">
+              <img class="card-img-top" src="{{($evento->url_imagen) ? 'storage/'.$evento->url_imagen : asset('storage/imagenes/jumbotron-image.jpg')}}" alt="..." height="200px" style="border-radius: 5px 5px 0 0">
               <div>
                 @if (!$evento->url_imagen)
                   <label wire:click="cargarImagenEvento('{{$evento->url_evento}}')" for="imagenEvento-{{$evento->url_evento}}" class="badge badge-primary text-bold text-md rounded-pill p-2" style="position:absolute; top: 178px;
