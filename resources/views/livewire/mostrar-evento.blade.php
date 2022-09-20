@@ -1,8 +1,8 @@
 <div>
-  <!-- Sección de la tarje del evento -->
+  <!-- Sección de la tarjeta del evento -->
   <div class="w-full flex justify-center px-8 pt-4" style="height: 50vh">
     <div class="max-w-sm w-full lg:max-w-full lg:flex justify-center h-full">
-      <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden shadow-md" style="background-image: url('{{($evento->url_imagen) ? asset('storage/'.$evento->url_imagen) : asset('storage/images/jumbotron-image.jpg')}}')" title="{{$evento->nombre}}">
+      <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden shadow-md" style="background-image: url('{{($evento->url_imagen) ? asset('storage/'.$evento->url_imagen) : asset('storage/imagenes/jumbotron-image.jpg')}}')" title="{{$evento->nombre}}">
       </div>
       <div class="border-none bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal shadow-md">
         <div class="mb-4">

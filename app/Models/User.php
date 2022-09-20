@@ -70,7 +70,7 @@ class User extends Authenticatable
 
     public function adminlte_desc()
     {
-        return 'That\'s a nice guy';
+        return ucfirst($this->getRoleNames()[0]);
     }
 
     public function adminlte_profile_url()

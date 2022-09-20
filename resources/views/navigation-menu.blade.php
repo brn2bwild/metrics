@@ -33,6 +33,11 @@
           <div class="hidden sm:flex sm:items-center sm:ml-6">
             @auth
                 <a href="{{ url('/dashboard') }}" class="text-md font-bold font-mono text-gray-700 dark:text-gray-500 underline hover:text-gray-900">Dashboard</a>
+                <form method="POST" action="{{ route('logout') }}" x-data>
+                  @csrf
+
+                  <a href="{{ route('logout') }}" class="ml-4 text-md font-bold font-mono text-gray-700 dark:text-gray-500 underline hover:text-gray-900" @click.prevent="$root.submit();">{{ __('Cerrar Sesión') }}</a>
+                </form>
             @else
                 <a href="{{ route('login') }}" class="text-md font-bold font-mono text-gray-700 dark:text-gray-500 underline hover:text-gray-900">{{__('Iniciar Sesión')}}</a>
 
@@ -174,6 +179,16 @@
               {{ __('Dashboard') }}
           </x-jet-responsive-nav-link>
       </div>
+      <div class="pt-2 pb-3 space-y-1">
+        <form method="POST" action="{{ route('logout') }}" x-data>
+          @csrf
+
+          {{-- <a href="{{ route('logout') }}" class="ml-4 text-md font-bold font-mono text-gray-700 dark:text-gray-500 underline hover:text-gray-900" @click.prevent="$root.submit();">{{ __('Cerrar Sesión') }}</a> --}}
+          <x-jet-responsive-nav-link @click.prevent="$root.submit();">
+              {{ __('Cerrar Sesión') }}
+          </x-jet-responsive-nav-link>
+        </form>
+    </div>
     @else
       <div class="pt-2 pb-3 space-y-1">
         <x-jet-responsive-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">

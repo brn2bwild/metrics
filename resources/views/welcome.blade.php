@@ -25,7 +25,7 @@
         <a class="text-white font-bold text-md items-end" href="{{route('lista-eventos.index')}}"><span class="text-white font-bold font-mono text-2xl">Todos los eventos</span><i class='bx bxs-chevrons-right'></i></a>
       </div>
     </section>
-    <footer class="pt-10 pb-1 bg-white flex flex-col gap-4">
+    <footer class="pt-6 pb-1 bg-neutral-100 flex flex-col gap-4">
       <div class="flex justify-center">
         <a href="www.facebook.com" class="bg-transparent hover:bg-gray-800 text-gray-900 font-semibold hover:text-white p-2 border-2 border-gray-800 hover:border-transparent rounded-full text-lg flex align-middle"><i class='bx bxl-facebook'></i></a>
       </div>

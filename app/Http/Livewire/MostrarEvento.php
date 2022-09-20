@@ -21,10 +21,12 @@ class MostrarEvento extends Component
   public function mount() {
     $this->fecha_evento = Carbon::parse($this->evento->fecha_hora)->format('d F Y, h:m a');
     $this->fecha_creacion = Carbon::parse($this->evento->created_at)->diffForHumans();
-    $this->registrado = (Registro::where('id_usuario', Auth::user()->id)->where('id_evento', $this->evento->id)->first() != null) ? true : false;
   }
 
   public function render() { 
+    if (Auth::user() != null) {
+      $this->registrado = (Registro::where('id_usuario', Auth::user()->id)->where('id_evento', $this->evento->id)->first() != null) ? true : false;
+    }
     return view('livewire.mostrar-evento', [
       'redes' => json_decode($this->evento->redes_sociales)
     ]);
