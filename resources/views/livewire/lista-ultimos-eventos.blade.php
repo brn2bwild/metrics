@@ -1,13 +1,7 @@
-<div class="py-4 px-6">
-  <div class="w-full flex justify-end pb-4">
-    {{-- <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
-      Buscar evento por nombre
-    </label> --}}
-    <input wire:model="busqueda" class="md:w-1/3 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="search" placeholder="Buscar evento por nombre">
-  </div>
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+<div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
     @foreach ($eventos as $evento)
-      <a href="{{route('lista-eventos.show', $evento->url_evento)}}">
+      <a class="" href="{{route('lista-eventos.show', $evento->url_evento)}}">
         <div class="max-w-sm rounded overflow-hidden shadow-lg">
           <img class="w-full" src="{{($evento->url_imagen) ? asset('storage/'.$evento->url_imagen) : asset('storage/imagenes/jumbotron-image.jpg')}}" alt="{{$evento->nombre}}">
           <div class="px-6 py-4 bg-yellow-300">

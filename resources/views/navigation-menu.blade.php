@@ -10,6 +10,11 @@
                   </a>
               </div>
               <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-jet-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
+                    {{ __('Inicio') }}
+                </x-jet-nav-link>
+              </div>
+              <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                 <x-jet-nav-link href="{{ route('lista-eventos.index') }}" :active="request()->routeIs('lista-eventos.index')">
                     {{ __('Eventos') }}
                 </x-jet-nav-link>
@@ -153,7 +158,13 @@
   <!-- Responsive Navigation Menu -->
   <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
     <div class="pt-2 pb-3 space-y-1">
-      <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+      <x-jet-responsive-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
+          {{ __('Inicio') }}
+      </x-jet-responsive-nav-link>
+    </div>
+
+    <div class="pt-2 pb-3 space-y-1">
+      <x-jet-responsive-nav-link href="{{ route('lista-eventos.index') }}" :active="request()->routeIs('lista-eventos.index')">
           {{ __('Eventos') }}
       </x-jet-responsive-nav-link>
     </div>
