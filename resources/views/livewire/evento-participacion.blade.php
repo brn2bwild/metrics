@@ -32,7 +32,7 @@
             @endif
           </div>
         </section>
-        <section class="col-12 col-md-6">
+        <section class="col-12 col-md-6 d-flex flex-column">
           <div class="d-flex justify-content-center mb-2">
             <a class="card-link text-bold"><h4 data-toggle="modal" data-target="#categoriasModal" class="" style="cursor: pointer"><i class="fas fa-pen-square mr-2"></i>Categoría: <strong>{{$registro->categoria->nombre}}</strong></h4></a>
           </div>
@@ -47,6 +47,9 @@
               </div>
             @endforeach
           </ul>
+        </section>
+        <section class="col-12 d-flex justify-content-end align-items-end">
+          <button wire:click="confirmarEliminar()" class="btn btn-danger" type="button">Eliminar participación</button>
         </section>
       </div>
     </div>

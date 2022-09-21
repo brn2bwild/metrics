@@ -51,7 +51,7 @@ Route::get('/lista-eventos', function () {
 })->name('lista-eventos.index');
 
 Route::get('/lista-eventos/{url}', function ($url) {
-  return view('eventos-lista.show', [
+  return view('eventos-lista.mostrar', [
     'evento' => Evento::where('url_evento', $url)->first()
   ]);
 })->name('lista-eventos.show');

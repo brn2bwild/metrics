@@ -227,10 +227,16 @@ return [
     'menu' => [
         // Navbar items:
         [
-            // 'type'         => 'navbar-link',
+            // 'type'    => 'navbar-link',
             'text'    => 'Inicio',
             'route'   => 'home',
             'topnav'  => true,
+        ],
+        [
+          // 'type'    => 'navbar-link',
+          'text'    => 'Eventos',
+          'route'   => 'lista-eventos.index',
+          'topnav'  => true,
         ],
         // [
         //     'type'         => 'fullscreen-widget',

@@ -17,6 +17,8 @@ class EventoParticipacion extends Component
   public $instagram, $facebook, $url_pagina, $whatsapp;
   public $categoria;
 
+  protected $listeners = ['eliminarParticipacion'];
+
   public function mount() {
     $this->fecha = Carbon::create($this->evento->fecha_hora)->toDateString();
     $this->hora = Carbon::create($this->evento->fecha_hora)->toTimeString();
@@ -26,7 +28,10 @@ class EventoParticipacion extends Component
     $this->whatsapp = ($array_redes->whatsapp) ?? '';
     $this->url_pagina = $this->evento->url_pagina;
     $this->registro = Registro::where('id_usuario', Auth::user()->id)->where('id_evento', $this->evento->id)->first();
-    $this->categoria = $this->registro->categoria->nombre;
+    if ($this->registro == null) { 
+      return to_route('participaciones.index');
+    }
+    // $this->categoria = $this->registro->categoria->nombre;
   }
 
   public function render() {
@@ -55,5 +60,25 @@ class EventoParticipacion extends Component
       'text' => '',
       'icon' => 'success',
     ]);
+  }
+
+  public function confirmarEliminar() {
+    $this->dispatchBrowserEvent('swal:confirmarEliminar',[
+      'title' => '¿Deseas eliminar tu participación del evento?',
+      'text' => '',
+      'icon' => 'question',
+    ]);
+  }
+
+  public function eliminarParticipacion() {
+    Registro::where('id_usuario', Auth::user()->id)->where('id_evento', $this->evento->id)->delete();
+
+    $this->dispatchBrowserEvent('swal:modal', [
+      'title' => '¡Participación eliminada!',
+      'text' => '',
+      'icon' => 'success',
+    ]);
+
+    return to_route('participaciones.index');
   }
 }

@@ -65,7 +65,8 @@
         icon: event.detail.icon,
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'Aceptar',
-        footer: '<a href="/login">Iniciar Sesión</a><a class="ml-4" href="/register">Crear una cuenta</a>'
+        // footer: '<a href="/login">Iniciar Sesión</a><a class="ml-4" href="/register">Crear una cuenta</a>'
+        footer: ''
       })
     })
 
