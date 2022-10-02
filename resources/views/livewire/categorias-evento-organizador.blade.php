@@ -43,16 +43,27 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="nombreCategoria">Nombre</label>
-            <input wire:model="nombreCategoria" type="text" class="form-control" id="nombreCategoria" aria-describedby="nombreCategoria" placeholder="Asigna un nombre a la categoría" required>
+            <input wire:model="nombreCategoria" type="text" class="form-control" placeholder="Asigna un nombre a la categoría" required>
             @error('nombreCategoria')
-              <small id="nombre" class="form-text text-muted">{{$message}}</small>
+              <small class="form-text text-muted">{{$message}}</small>
             @enderror
           </div>
           <div class="form-group">
-            <label for="descripcionCategoria">Descripción de la catagoría</label>
-            <textarea wire:model="descripcionCategoria" type="text" class="form-control" id="descripcionCategoria" aria-describedby="descripcionCategoria" placeholder="Agrega una descripción a la categoría"></textarea>
+            <label for="tipoCategoria">Categoría individual / por equipos</label>
+            <select wire:model="tipoCategoria" class="form-control">
+              <option>Selecciona una opción</option>
+              <option value="0">Individual</option>
+              <option value="1">Por equipos</option>
+            </select>
+            @error('tipoCategoria')
+              <small class="form-text text-muted">{{$message}}</small>
+            @enderror
+          </div>
+          <div class="form-group">
+            <label for="descripcionCategoria">Descripción de la categoría</label>
+            <textarea wire:model="descripcionCategoria" type="text" class="form-control" placeholder="Agrega una descripción a la categoría"></textarea>
             @error('descripcionCategoria')
-              <small id="descripcion" class="form-text text-muted">{{$message}}</small>
+              <small class="form-text text-muted">{{$message}}</small>
             @enderror
           </div>
         </div>
@@ -83,40 +94,40 @@
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <label for="nombreWod">Nombre</label>
-            <input wire:model="nombreWod" type="text" class="form-control" id="nombreWod" aria-describedby="nombreWod" placeholder="Asigna un nombre al wod" required>
+            <label>Nombre</label>
+            <input wire:model="nombreWod" type="text" class="form-control" placeholder="Asigna un nombre al wod" required>
             @error('nombreWod')
-              <small id="nombre" class="form-text text-muted">{{$message}}</small>
+              <small class="form-text text-muted">{{$message}}</small>
             @enderror
           </div>
           <div class="form-group">
-            <label for="descripcionWod">Descripción</label>
-            <textarea wire:model="descripcionWod" type="text" class="form-control" id="descripcionWod" aria-describedby="descripcionWod" placeholder="Agrega la descripción del wod">
+            <label>Descripción</label>
+            <textarea wire:model="descripcionWod" type="text" class="form-control" placeholder="Agrega la descripción del wod">
             </textarea>
             @error('descripcionWod')
-              <small id="descripcion" class="form-text text-muted">{{$message}}</small>
+              <small class="form-text text-muted">{{$message}}</small>
             @enderror
           </div>
           <div class="form-group">
             <label for="tipoWod">Tipo de wod</label>
-            <select wire:model="tipoWod" id="tipoWod" class="form-control" required>
+            <select wire:model="tipoWod" class="form-control" required>
               <option value="">Selecciona una opción</option>
               <option value="amrap">Amrap</option>
               <option value="fortime">For time</option>
             </select>
             @error('tipoWod')
-              <small id="tipo" class="form-text text-muted">{{$message}}</small>
+              <small class="form-text text-muted">{{$message}}</small>
             @enderror
           </div>
           <div class="form-group">
-            <label for="timeCap">Time cap (minutos)</label>
-            <input wire:model="timeCap" type="time" class="form-control" id="timeCap" aria-describedby="timeCap" step="1" value="12:23:00" required>
+            <label>Time cap (minutos)</label>
+            <input wire:model="timeCap" type="time" class="form-control" step="1" value="12:23:00" required>
             @error('timeCap')
               <small id="timecap" class="form-text text-muted">{{$message}}</small>
             @enderror
           </div>
           <div class="form-group">
-            <label for="categoriaWod">Categoría</label>
+            <label>Categoría</label>
             {{-- <input wire:model="categoriaWod" type="number" class="form-control" id="categoriaWod" aria-describedby="categoriaWod" min="0"> --}}
             <select wire:model="categoriaWod" class="form-control">
               <option value="">Selecciona una categoría</option>
@@ -125,7 +136,7 @@
               @endforeach
             </select>
             @error('categoriaWod')
-              <small id="categoriaWod" class="form-text text-muted">{{$message}}</small>
+              <small class="form-text text-muted">{{$message}}</small>
             @enderror
           </div>
         </div>

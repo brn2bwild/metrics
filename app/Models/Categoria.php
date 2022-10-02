@@ -11,6 +11,7 @@ class Categoria extends Model
 
     protected $fillable = [
       'nombre',
+      'equipos',
       'descripcion',
       'id_evento',
     ];

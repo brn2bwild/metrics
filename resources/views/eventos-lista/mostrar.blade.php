@@ -72,7 +72,7 @@
 
     window.addEventListener('swal:confirmar', event => {
       Swal.fire({
-        template: '#my-template'
+        template: '#template-categoria'
       //   title: event.detail.title,
       //   text: event.detail.text,
       //   icon: event.detail.icon,
@@ -83,6 +83,14 @@
       //   cancelButtonColor: '#d33',
       }).then((resultado) => {
         if(resultado.isConfirmed) { window.livewire.emit('inscribirUsuario', resultado.value) }
+      })
+    })
+
+    window.addEventListener('swal:confirmarEquipo', event => {
+      Swal.fire({
+        template: '#template-equipo'
+      }).then((resultado) => {
+        if(resultado.isConfirmed) { window.livewire.emit('inscribirEquipo', resultado.value) }
       })
     })
   </script>

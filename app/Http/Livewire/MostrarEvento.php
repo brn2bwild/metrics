@@ -16,7 +16,7 @@ class MostrarEvento extends Component
   public $categoria_inscripcion;
   public $registrado = false;
 
-  protected $listeners = ['inscribirUsuario'];
+  protected $listeners = ['inscribirUsuario', 'inscribirEquipo'];
 
   public function mount() {
     $this->fecha_evento = Carbon::parse($this->evento->fecha_hora)->format('d F Y, h:m a');
@@ -56,14 +56,14 @@ class MostrarEvento extends Component
 
   }
 
-  public function inscribirUsuario($categoria) {
-    $categoria_evento = Categoria::where('nombre', $categoria)->where('id_evento', $this->evento->id)->first();
+  public function inscribirUsuario($id_categoria) {
+    $this->categoria_inscripcion = Categoria::where('id', $id_categoria)->where('id_evento', $this->evento->id)->first();
 
-    if($categoria_evento != null and Auth::user() != null) {
+    if($this->categoria_inscripcion != null and Auth::user() != null and $this->categoria_inscripcion->equipos == 0) {
       Registro::create([
         'id_usuario' => Auth::user()->id,
         'id_evento' => $this->evento->id,
-        'id_categoria' => $categoria_evento->id,
+        'id_categoria' => $this->categoria_inscripcion->id,
       ]);
 
       $this->dispatchBrowserEvent('swal:modal', [
@@ -73,7 +73,11 @@ class MostrarEvento extends Component
       ]);
     }
 
-    if($categoria_evento == null){
+    if($this->categoria_inscripcion != null and Auth::user() != null and $this->categoria_inscripcion->equipos == 1) {
+      $this->dispatchBrowserEvent('swal:confirmarEquipo');
+    }
+
+    if($this->categoria_inscripcion == null){
       $this->dispatchBrowserEvent('swal:modal', [
         'title' => '¡Error!',
         'text' => '',
@@ -89,5 +93,39 @@ class MostrarEvento extends Component
       ]);
     }
 
+  }
+
+  public function inscribirEquipo($nombre_equipo){
+
+    if($this->categoria_inscripcion != null and Auth::user() != null and $this->categoria_inscripcion->equipos == 1) {
+      Registro::create([
+        'id_usuario' => Auth::user()->id,
+        'id_evento' => $this->evento->id,
+        'id_categoria' => $this->categoria_inscripcion->id,
+        'nombre_equipo' => $nombre_equipo,
+      ]);
+
+      $this->dispatchBrowserEvent('swal:modal', [
+        'title' => '¡Equipo inscrito!',
+        'text' => '',
+        'icon' => 'success',
+      ]);
+    }
+
+    if($this->categoria_inscripcion == null){
+      $this->dispatchBrowserEvent('swal:modal', [
+        'title' => '¡Error!',
+        'text' => '',
+        'icon' => 'error',
+      ]);
+    }
+
+    if(Auth::user() == null) {
+      $this->dispatchBrowserEvent('swal:modal', [
+        'title' => '¡Error!',
+        'text' => '',
+        'icon' => 'error',
+      ]);
+    }    
   }
 }

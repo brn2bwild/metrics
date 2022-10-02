@@ -14,6 +14,7 @@ class Registro extends Model
       'id_evento',
       'id_categoria',
       'tiempos',
+      'nombre_equipo',
     ];
 
     public function usuario() {

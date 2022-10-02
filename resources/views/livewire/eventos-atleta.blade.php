@@ -19,7 +19,7 @@
                 <p class="card-text mb-0">{{$registro->evento->fecha_hora}}</p>
                 {{-- <p class="card-text mb-0">{{$registro->evento->ciudad}}</p>
                 <p class="card-text mb-0">{{$registro->evento->estado}}</p> --}}
-                <p class="card-text mb-0">Categoría: <strong>{{$registro->categoria->nombre}}</strong></p>
+                <p class="card-text mb-0">Categoría: <strong>{{$registro->categoria->nombre}} {{($registro->categoria->equipos == 0) ? '(Individual)' : '(Equipos)'}}</strong></p>
               </div>
               <div class="card-footer text-muted">
                 <div class="d-flex justify-content-center">

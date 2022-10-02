@@ -10,7 +10,7 @@ use Livewire\Component;
 class CategoriasEventoOrganizador extends Component
 {
   public $evento;
-  public $id_categoria, $nombreCategoria, $descripcionCategoria, $editarCategoria = false, $accionCategoria = 'Agregar categoría';
+  public $id_categoria, $nombreCategoria, $tipoCategoria, $descripcionCategoria, $editarCategoria = false, $accionCategoria = 'Agregar categoría';
   public $id_wod, $nombreWod, $descripcionWod, $tipoWod, $timeCap = '00:00:00', $categoriaWod, $editarWod = false, $accionWod = 'Agregar wod';
 
   protected $listeners = ['eliminarCategoria', 'eliminarWod'];
@@ -128,6 +128,7 @@ class CategoriasEventoOrganizador extends Component
   public function editarCategoria($categoria) {
     $this->editarCategoria = true;
     $this->accionCategoria = 'Editar categoria';
+    $this->tipoCategoria = $categoria['equipos'];
     $this->id_categoria = $categoria['id'];
     $this->nombreCategoria = $categoria['nombre'];
     $this->descripcionCategoria = $categoria['descripcion'];
@@ -138,10 +139,12 @@ class CategoriasEventoOrganizador extends Component
     $categoriaValidada = Validator::make(
       [
         'nombreCategoria' => $this->nombreCategoria,
+        'tipoCategoria' => $this->tipoCategoria,
         'descripcionCategoria' => $this->descripcionCategoria,
       ],
       [
         'nombreCategoria' => 'required|max:60',
+        'tipoCategoria' => 'required',
         'descripcionCategoria' => 'max:150',
       ],
     )->validate();
@@ -151,6 +154,7 @@ class CategoriasEventoOrganizador extends Component
         'id' => $this->id_categoria,
       ],[
         'nombre' => $this->nombreCategoria,
+        'equipos' => $this->tipoCategoria,
         'descripcion' => $this->descripcionCategoria,
         'id_evento' => $this->evento->id,
       ]
@@ -169,6 +173,7 @@ class CategoriasEventoOrganizador extends Component
   public function limpiarDatosCategoria() {
     $this->id_categoria = '';
     $this->nombreCategoria = '';
+    $this->tipoCategoria = '';
     $this->descripcionCategoria = ''; 
     $this->accionCategoria = 'Agregar categoría';
     $this->editarCategoria = false;

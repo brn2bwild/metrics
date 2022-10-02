@@ -54,7 +54,7 @@
   <!-- Sección de los nombres de las categorías -->
   <div class=" w-full flex flex-wrap justify-center mt-20 lg:my-2 p-4">
     @foreach ($evento->categorias as $categoria)
-      <span wire:click="verCategoria('{{$categoria->id}}')" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-md font-semibold text-gray-700 ml-2 cursor-pointer mb-2 lg:mb-0">{{$categoria->nombre}}</span>
+      <span wire:click="verCategoria('{{$categoria->id}}')" class="inline-block bg-gray-200 rounded-full px-4 py-1 text-md font-semibold text-gray-700 ml-2 cursor-pointer mb-2 lg:mb-0 text-center">{{$categoria->nombre}}<br>{{($categoria->equipos == 0) ? '(Individual)' : '(Equipos)'}}</span>
     @endforeach
   </div>
 
@@ -64,11 +64,12 @@
       @forelse ($wods_categoria as $wod)
       <div class="flex justify-center">
         <div class="block rounded-md shadow-lg bg-white w-full text-center">
-          <div class="py-3 px-6 border-b border-gray-300">
-            <h5 class="text-gray-900 text-xl font-medium"><i class='bx bxs-flag-checkered'></i> {{$wod->nombre}}</h5>
+          <div class="py-3 px-4 border-b border-gray-300 flex justify-between align-bottom">
+            <i class='bx bx-dumbbell text-4xl'></i>
+            <h5 class="text-gray-900 text-xl font-semibold pr-8">{{$wod->nombre}}</h5>
           </div>
           <div class="p-6">
-            <p class="text-gray-700 text-base mb-4">
+            <p class="text-gray-700 text-base">
               {{$wod->descripcion}}
             </p>
           </div>
@@ -79,17 +80,35 @@
     @endif
   </div>
 
-  <template id="my-template">
+  <template id="template-categoria">
     <swal-title>
       Selecciona la categoría a la que deseas inscribirte
     </swal-title>
     <swal-input type="select" placeholder="Selecciona una categoría" value="">
       @foreach ($evento->categorias as $categoria)
-        <swal-input-option value="{{$categoria->nombre}}">{{$categoria->nombre}}</swal-input-option> 
+        <swal-input-option value="{{$categoria->id}}">{{$categoria->nombre}} {{($categoria->equipos == 0) ? '(Individual)' : '(Equipos)'}}</swal-input-option> 
       @endforeach
     </swal-input>
     <swal-button type="confirm" color="info">
-      Inscribirme
+      Aceptar
+    </swal-button>
+    <swal-button type="deny">
+      Cancelar
+    </swal-button>
+    <swal-param name="allowEscapeKey" value="false" />
+    <swal-param
+      name="customClass"
+      value='{ "popup": "my-popup" }' />
+  </template>
+
+  <template id="template-equipo">
+    <swal-title>
+      Introduce el nombre de tu equipo
+    </swal-title>
+    <swal-input type="text" placeholder="Nombre del equipo" value="">
+    </swal-input>
+    <swal-button type="confirm" color="info">
+      Aceptar
     </swal-button>
     <swal-button type="deny">
       Cancelar

@@ -34,7 +34,7 @@
         </section>
         <section class="col-12 col-md-6 d-flex flex-column">
           <div class="d-flex justify-content-center mb-2">
-            <a class="card-link text-bold"><h4 data-toggle="modal" data-target="#categoriasModal" class="" style="cursor: pointer"><i class="fas fa-pen-square mr-2"></i>Categoría: <strong>{{$registro->categoria->nombre}}</strong></h4></a>
+            <a class="card-link text-bold"><h4 data-toggle="modal" data-target="#categoriasModal" class="" style="cursor: pointer"><i class="fas fa-pen-square mr-2"></i>Categoría: <strong>{{$registro->categoria->nombre}} {{($registro->categoria->equipos == 0) ? '(Individual)' : '(Equipos)'}}</strong></h4></a>
           </div>
           <ul class="list-group">
             @foreach ($registro->categoria->wods as $wod)
@@ -67,9 +67,9 @@
         </div>
         <div class="modal-body">
           <label for="categoria">Selecciona la categoría en la que deseas participar</label>
-          <select wire:model="categoria" id="categoria" class="form-control">
+          <select wire:model="id_categoria" id="categoria" class="form-control">
             @foreach ($evento->categorias as $categoria)
-              <option value="{{$categoria->nombre}}">{{$categoria->nombre}}</option>
+              <option value="{{$categoria->id}}">{{$categoria->nombre}} {{($categoria->equipos == 0) ? '(Individual)' : '(Equipos)'}}</option>
             @endforeach
           </select>
           @error('categoria')
@@ -83,4 +83,24 @@
       </div>
     </div>
   </div>
+
+
+  <!-- Swal equipos-->
+  <template id="template-equipo">
+    <swal-title>
+      Introduce el nombre de tu equipo
+    </swal-title>
+    <swal-input type="text" placeholder="Nombre del equipo" value="">
+    </swal-input>
+    <swal-button type="confirm" color="info">
+      Aceptar
+    </swal-button>
+    <swal-button type="deny">
+      Cancelar
+    </swal-button>
+    <swal-param name="allowEscapeKey" value="false" />
+    <swal-param
+      name="customClass"
+      value='{ "popup": "my-popup" }' />
+  </template>
 </div>

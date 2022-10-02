@@ -21,6 +21,7 @@ return new class extends Migration
                   ->constrained('eventos')
                   ->cascadeOnUpdate()
                   ->cascadeOnDelete();
+            $table->boolean('equipos');
             $table->timestamps();
         });
     }
