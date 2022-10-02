@@ -1,6 +1,6 @@
 <div>
   <!-- Sección de la tarjeta del evento -->
-  <div class="w-full flex justify-center px-8 pt-4" style="height: 50vh">
+  <div class="w-full flex justify-center px-8 py-4" style="height: 50vh">
     <div class="max-w-sm w-full lg:max-w-full lg:flex justify-center h-full">
       <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden shadow-md" style="background-image: url('{{($evento->url_imagen) ? asset('storage/'.$evento->url_imagen) : asset('storage/imagenes/jumbotron-image.jpg')}}')" title="{{$evento->nombre}}">
       </div>
@@ -52,9 +52,9 @@
   </div>
 
   <!-- Sección de los nombres de las categorías -->
-  <div class=" w-full flex flex-wrap justify-center mt-20 lg:my-2 p-4">
+  <div class=" w-full flex flex-wrap justify-center mt-20 lg:my-0 p-4 bg-slate-50">
     @foreach ($evento->categorias as $categoria)
-      <span wire:click="verCategoria('{{$categoria->id}}')" class="inline-block bg-gray-200 rounded-full px-4 py-1 text-md font-semibold text-gray-700 ml-2 cursor-pointer mb-2 lg:mb-0 text-center">{{$categoria->nombre}}<br>{{($categoria->equipos == 0) ? '(Individual)' : '(Equipos)'}}</span>
+      <span wire:click="verCategoria('{{$categoria->id}}')" class="inline-block bg-gray-200 rounded-full px-4 py-1 text-md font-semibold text-gray-700 ml-2 cursor-pointer mb-2 lg:mb-0 text-center">{{$categoria->nombre}} {{($categoria->equipos == 0) ? '(Individual)' : '(Equipos)'}}</span>
     @endforeach
   </div>
 

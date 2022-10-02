@@ -50,6 +50,7 @@ class MostrarEvento extends Component
         'title' => '¿No tienes una cuenta?',
         'text' => 'Para poder registrarte al evento y poder llevar tus estadísticas, iniciar sesión o crear una cuenta.',
         'icon' => 'info',
+        'footer' => '<a href="/login">Iniciar Sesión</a><a class="ml-4" href="/register">Crear una cuenta</a>',
       ]);
     }
 

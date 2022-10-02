@@ -36,8 +36,8 @@
               </div>
               <div class="card-footer text-muted">
                 <div class="d-flex justify-content-between">
-                  <a href="{{route('eventos.editar', $evento->url_evento)}}" class="card-link text-bold rounded-pill">Editar</a>
-                  <span wire:click.prevent="confirmarEliminarEvento('{{$evento->url_evento}}')" class="card-link text-bold text-danger" style="cursor: pointer">Eliminar</span>
+                  <a href="{{route('eventos.editar', $evento->url_evento)}}" class="card-link text-bold rounded-pill">Editar evento</a>
+                  <span wire:click.prevent="confirmarEliminarEvento('{{$evento->url_evento}}')" class="card-link text-bold text-danger" style="cursor: pointer">Eliminar evento</span>
                 </div>
               </div>
             </div>
