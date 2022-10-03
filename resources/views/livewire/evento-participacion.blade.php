@@ -61,7 +61,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="tituloCategoriasModal">Categoría</h5>
-          <button data-toggle="modal" data-target="#categoriasModal" type="button" class="close">
+          <button wire:click="limpiarDatos()" data-toggle="modal" data-target="#categoriasModal" type="button" class="close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -77,7 +77,7 @@
             @enderror
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button wire:click="limpiarDatos()" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
           <button wire:click="guardarCategoria()" type="button" class="btn btn-primary">Guardar</button>
         </div>
       </div>

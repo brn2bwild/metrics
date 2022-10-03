@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Evento;
 use App\Models\Registro;
 use Livewire\Component;
 

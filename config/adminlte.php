@@ -249,7 +249,7 @@ return [
         //     'text' => 'search',
         // ],
         [
-          'text' => 'Mis eventos',
+          'text' => 'Participaciones',
           'route'  => 'participaciones.index',
           // 'can'  => 'manage-blog',
         ],

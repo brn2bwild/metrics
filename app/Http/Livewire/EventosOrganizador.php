@@ -17,10 +17,11 @@ class EventosOrganizador extends Component
 
   public $nombre, $fecha, $hora, $ciudad, $estado;
   public $url_imagen, $url_evento, $imagen_evento;
+  public $evento_mostrar;
 
   protected array $rules = [];
 
-  protected $listeners = ['eliminarEvento', 'eliminarImagenEvento'];
+  protected $listeners = ['eliminarEvento', 'eliminarImagenEvento', 'borrarEventoMostrar'];
 
   public function rules () {
     return [
@@ -35,6 +36,11 @@ class EventosOrganizador extends Component
     return view('livewire.eventos-organizador', [
       'eventos' => Evento::where('id_usuario', Auth::user()->id)->orderBy('id', 'DESC')->paginate(8)
     ]);
+  }
+
+  public function mostrarAtletas($evento) {
+    $this->evento_mostrar = Evento::find($evento['id']);
+    $this->dispatchBrowserEvent('mostrarModalAtletas');
   }
 
   public function cerrarModalImagenEvento() {

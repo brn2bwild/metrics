@@ -39,6 +39,10 @@ class EventoParticipacion extends Component
     return view('livewire.evento-participacion');
   }
 
+  public function limpiarDatos() {
+    $this->id_categoria = $this->registro->categoria->id;
+  }
+
   public function guardarCategoria() {
     Validator::make(
       ['categoria' => $this->id_categoria],
@@ -49,8 +53,8 @@ class EventoParticipacion extends Component
       ]
     )->validate();
 
-    // $this->categoria_inscripcion = Categoria::find($this->id_categoria);
-    // dd($categoria->equipos);
+    $this->categoria_inscripcion = Categoria::find($this->id_categoria);
+    
     switch (Categoria::find($this->id_categoria)->equipos) {
       case 0:
         Registro::where('id_usuario', Auth::user()->id)->where('id_evento', $this->evento->id)->update([

@@ -54,7 +54,13 @@
   <!-- Sección de los nombres de las categorías -->
   <div class=" w-full flex flex-wrap justify-center mt-20 lg:my-0 p-4 bg-slate-50">
     @foreach ($evento->categorias as $categoria)
-      <span wire:click="verCategoria('{{$categoria->id}}')" class="inline-block bg-gray-200 rounded-full px-4 py-1 text-md font-semibold text-gray-700 ml-2 cursor-pointer mb-2 lg:mb-0 text-center">{{$categoria->nombre}} {{($categoria->equipos == 0) ? '(Individual)' : '(Equipos)'}}</span>
+      <span wire:click="verCategoria('{{$categoria->id}}')" class="inline-block bg-gray-200 rounded-full px-4 py-2 text-md font-semibold text-gray-700 ml-2 cursor-pointer mb-2 lg:mb-0 text-center"> 
+        @if($categoria->equipos == 0) 
+          <i class='bx bx-user text-xl'></i> {{$categoria->nombre}} (Individual)  
+        @else
+          <i class='bx bx-group text-xl'></i> {{$categoria->nombre}} (Equipos)  
+        @endif
+      </span>
     @endforeach
   </div>
 
