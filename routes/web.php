@@ -46,6 +46,12 @@ Route::get('/participaciones/{url}', function($url) {
 })->name('participaciones.mostrar')->middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:administrador|organizador|usuario']);
 // Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {});
 
+Route::get('/scores/{evento}', function($url) {
+  return view('scores-organizador.editar', [
+    'evento' => Evento::where('url_evento', $url)->first()
+  ]);
+})->name('scores.editar')->middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:administrador|organizador']);
+
 Route::get('/lista-eventos', function () {
   return view('eventos-lista.index');
 })->name('lista-eventos.index');
