@@ -16,8 +16,7 @@
             <div class="card" style="width: 18rem;">
               <img class="card-img-top" src="{{($evento->url_imagen) ? 'storage/'.$evento->url_imagen : asset('storage/imagenes/jumbotron-image.jpg')}}" alt="..." height="200px" style="border-radius: 5px 5px 0 0">
               <div>
-                <button wire:click="mostrarAtletas({{$evento}})" type="button" class="btn btn-primary text-bold rounded-pill text-sm" style="position:absolute; top: 178px; left: 5px; cursor: pointer">Atletas/Equipos <span class="badge badge-light ml-2 font-sm">{{$evento->registros->count()}}</span>
-                </button>
+                {{-- <button wire:click="mostrarAtletas({{$evento}})" type="button" class="btn btn-primary text-bold rounded-pill text-sm" style="position:absolute; top: 178px; left: 5px; cursor: pointer">Atletas/Equipos <span class="badge badge-light ml-2 font-sm">{{$evento->registros->count()}}</span></button> --}}
                 @if (!$evento->url_imagen)
                   <label wire:click="cargarImagenEvento('{{$evento->url_evento}}')" for="imagenEvento-{{$evento->url_evento}}" class="badge badge-primary text-bold text-md rounded-pill p-2" style="position:absolute; top: 178px;
                   right: 5px; cursor: pointer" data-toggle="tooltip" title="Buscar imágen">
@@ -42,7 +41,9 @@
                   <a href="" wire:click.prevent="confirmarEliminarEvento('{{$evento->url_evento}}')" class="card-link text-bold text-danger">Eliminar evento</a>
                 </div>
                 <div class="d-flex justify-content-center pt-2">
-                  <a href="{{route('scores.editar', $evento->url_evento)}}" class="card-link text-bold text-info">Scores</a>
+                  <a class="btn btn-info text-bold rounded-pill text-sm" href="{{route('scores.editar', $evento->url_evento)}}">Scores</a>
+                  {{-- <a wire:click="mostrarAtletas({{$evento}})" type="button" class="btn btn-primary text-bold rounded-pill text-sm">Atletas/Equipos  --}}
+                  </a>
                 </div>
               </div>
             </div>

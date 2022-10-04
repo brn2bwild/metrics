@@ -59,8 +59,8 @@
     //   window.livewire.emit('buscarCategoria')
     // }
     
-    window.addEventListener('mostrarModalAtletas', event => {
-      $('#modalAtletas').modal('show')
+    window.addEventListener('mostrarModalScores', event => {
+      $('#modalScores').modal('show')
     })
 
     // window.addEventListener('cerrarModalAtletas', event => {
